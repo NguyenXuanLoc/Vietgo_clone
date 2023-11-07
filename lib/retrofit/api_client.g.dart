@@ -419,6 +419,7 @@ class _RestClient implements RestClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+
     final value = ExploreRestaurantListModel.fromJson(_result.data!);
     return value;
   }

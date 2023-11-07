@@ -13,7 +13,7 @@ class Constants {
   static Color colorGray = Color(0xFF999999);
   static Color colorLike = Color(0xFFff6060);
   static Color colorLikeLight = Color(0xFFe2bcbc);
-  static Color colorTheme = Color(0xFF06C168);
+  static Color colorTheme = Color(0xFFe0e355);
   static Color colorOrderPending = Color(0xFFF4AE36);
   static Color colorOrderPickup = Color(0xFFd1286b);
   static Color colorBackground = Color(0xFFFAFAFA);

@@ -57,10 +57,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('images/ic_background_image.png'),
-              fit: BoxFit.cover,
-            )),
+          color: Constants.colorTheme),
         alignment: Alignment.center,
         child: Hero(
           tag: 'App_logo',
