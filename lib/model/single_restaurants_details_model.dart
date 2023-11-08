@@ -5,6 +5,7 @@ class SingleRestaurantsDetailsModel {
   SingleRestaurantsDetailsModel({this.success, this.data});
 
   SingleRestaurantsDetailsModel.fromJson(Map<String, dynamic> json) {
+
     success = json['success'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
@@ -253,7 +254,9 @@ class SubMenuListData {
     name = json['name'].toString();
     type = json['type'].toString();
     image = json['image'];
-    price = num.parse(json['price']);
+    String _price  = json['price'];
+
+    price = num.parse(_price.replaceAll(",", ""));
     qtyReset =  json['qty_reset'];
     itemResetValue =  json['item_reset_value'];
     availableItem =  json['availabel_item'];
