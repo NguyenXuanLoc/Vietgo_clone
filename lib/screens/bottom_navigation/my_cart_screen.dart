@@ -37,6 +37,7 @@ import 'package:mealup/utils/database_helper.dart';
 import 'package:mealup/utils/localization/language/languages.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:scoped_model/scoped_model.dart';
+import '../../utils/app_utils.dart';
 import 'dashboard_screen.dart';
 
 class MyCartScreen extends StatefulWidget {
@@ -1565,25 +1566,25 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                               .setSp(
                                                               16)),
                                                     ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: ScreenUtil()
-                                                              .setHeight(
-                                                              5)),
-                                                      child: Text(
-                                                        SharedPreferenceUtil
-                                                            .getString(
-                                                            Constants
-                                                                .appSettingCurrencySymbol) +
-                                                            cartMenuItem[
-                                                                position]
-                                                                    .price!
-                                                                .toStringAsFixed(
-                                                                2),
-                                                        textAlign:
-                                                        TextAlign
-                                                            .start,
-                                                        style: TextStyle(
+                                                          Padding(
+                                                            padding: EdgeInsets.only(
+                                                                top: ScreenUtil()
+                                                                    .setHeight(
+                                                                        5)),
+                                                            child: Text(
+                                                              AppUtils.formatMoney(
+                                                                      cartMenuItem[
+                                                                              position]
+                                                                          .price!
+                                                                          .toInt()) +" "+
+                                                                  SharedPreferenceUtil
+                                                                      .getString(
+                                                                          Constants
+                                                                              .appSettingCurrencySymbol),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .start,
+                                                              style: TextStyle(
                                                             fontFamily:
                                                             Constants
                                                                 .appFontBold,
@@ -2673,10 +2674,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                             right: ScreenUtil()
                                                 .setWidth(10)),
                                         child: Text(
-                                          "${SharedPreferenceUtil.getString(
-                                              Constants
-                                                  .appSettingCurrencySymbol)} " +
-                                              subTotal.toStringAsFixed(2),
+                                              AppUtils.formatMoney(subTotal.toInt())+ " ${SharedPreferenceUtil.getString(
+                                                  Constants
+                                                      .appSettingCurrencySymbol)}",
                                           style: TextStyle(
                                               fontFamily:
                                               Constants.appFont,
@@ -2795,12 +2795,10 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                 right: ScreenUtil()
                                                     .setWidth(8)),
                                             child: Text(
-                                              "- ${SharedPreferenceUtil
+                                              "- ${AppUtils.formatMoney(discountAmount.round())} ${SharedPreferenceUtil
                                                   .getString(Constants
-                                                  .appSettingCurrencySymbol)} " +
-                                                  discountAmount
-                                                      .toStringAsFixed(
-                                                      2),
+                                                  .appSettingCurrencySymbol)}"
+                                                  ,
                                               style: TextStyle(
                                                   fontFamily:
                                                   Constants
@@ -2851,14 +2849,12 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                             if (0 <
                                                 double.parse(
                                                     strFinalDeliveryCharge!)) {
-                                              return "+ ${SharedPreferenceUtil
-                                                  .getString(Constants
-                                                  .appSettingCurrencySymbol)} " +
-                                                  double.parse(
-                                                      strFinalDeliveryCharge!)
-                                                      .toStringAsFixed(2);
-                                            } else {
-                                              return "0";
+                                                    return "+ ${AppUtils.formatMoney(
+                                                        double.parse(
+                                                            strFinalDeliveryCharge!)
+                                                            .round())} ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}";
+                                                  } else {
+                                                    return "0";
                                             }
                                           }(),
                                           style: TextStyle(
@@ -2907,18 +2903,16 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                   () {
                                                 if (strTaxAmount ==
                                                     "") {
-                                                  return "+ ${SharedPreferenceUtil
+                                                  return "+ 0${SharedPreferenceUtil
                                                       .getString(Constants
-                                                      .appSettingCurrencySymbol)} " +
-                                                      "0";
+                                                      .appSettingCurrencySymbol)}";
                                                 } else {
-                                                  return "+ ${SharedPreferenceUtil
+                                                  return "+ ${double.parse(
+                                                      strTaxAmount!)
+                                                      .toStringAsFixed(
+                                                      2)}${SharedPreferenceUtil
                                                       .getString(Constants
-                                                      .appSettingCurrencySymbol)} " +
-                                                      double.parse(
-                                                          strTaxAmount!)
-                                                          .toStringAsFixed(
-                                                          2);
+                                                      .appSettingCurrencySymbol)}";
                                                 }
                                               }(),
                                               style: TextStyle(
@@ -2975,12 +2969,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                 right: ScreenUtil()
                                                     .setWidth(10)),
                                             child: Text(
-                                              "- ${SharedPreferenceUtil
+                                              "- ${AppUtils.formatMoney(vendorDiscountAmount.round())}${SharedPreferenceUtil
                                                   .getString(Constants
-                                                  .appSettingCurrencySymbol)} " +
-                                                  vendorDiscountAmount
-                                                      .toStringAsFixed(
-                                                      2),
+                                                  .appSettingCurrencySymbol)}",
                                               style: TextStyle(
                                                   fontFamily:
                                                   Constants
@@ -3061,19 +3052,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                       addGlobalTax;
                                                 }
                                               }
-                                              if (totalPrice == 0) {
-                                                return "${SharedPreferenceUtil
-                                                    .getString(Constants
-                                                    .appSettingCurrencySymbol)} " +
-                                                    "0.0";
-                                              } else {
-                                                return "${SharedPreferenceUtil
-                                                    .getString(Constants
-                                                    .appSettingCurrencySymbol)} " +
-                                                    totalPrice
-                                                        .toStringAsFixed(
-                                                        2);
-                                              }
+                                              return "${AppUtils.formatMoney(totalPrice.round())}${SharedPreferenceUtil
+                                                  .getString(Constants
+                                                  .appSettingCurrencySymbol)}";
                                             }(),
                                             style: TextStyle(
                                                 fontFamily:
@@ -3768,9 +3749,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 color: Constants.colorBlack,
                                 child: Center(
                                   child: Text(
-                                    '${SharedPreferenceUtil.getString(Constants
-                                        .appSettingCurrencySymbol)} ${singleFinal +
-                                        tempPrice}',
+                                    '${AppUtils.formatMoney((singleFinal +
+                                        tempPrice).round())}${SharedPreferenceUtil.getString(Constants
+                                        .appSettingCurrencySymbol)}',
                                     style: TextStyle(
                                         fontFamily: Constants.appFont,
                                         color: Colors.white,
@@ -3940,15 +3921,13 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     fontSize: ScreenUtil()
                                                         .setSp(14)),
                                               ),
-                                              Text(
+                                              Text(AppUtils.formatMoney(double.parse( _listFinalCustomization[
+                                              outerIndex]
+                                                  .list[innerIndex]
+                                                  .price!??'0').round())+
                                                 SharedPreferenceUtil
                                                     .getString(Constants
-                                                    .appSettingCurrencySymbol) +
-                                                    ' ' +
-                                                    _listFinalCustomization[
-                                                    outerIndex]
-                                                        .list[innerIndex]
-                                                        .price!,
+                                                    .appSettingCurrencySymbol),
                                                 style: TextStyle(
                                                     fontFamily:
                                                     Constants.appFont,
