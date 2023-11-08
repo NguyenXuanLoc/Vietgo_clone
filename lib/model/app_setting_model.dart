@@ -5,6 +5,7 @@ class AppSettingModel {
   AppSettingModel({this.success, this.data});
 
   AppSettingModel.fromJson(Map<String, dynamic> json) {
+    print("AppSettingModel.fromJson $json");
     success = json['success'];
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
@@ -194,7 +195,8 @@ class Data {
     taxId = json['tax_id'];
     timezone = json['timezone'];
     currency = json['currency'];
-    currencySymbol = json['currency_symbol'];
+    String cs = json['currency_symbol'];
+    currencySymbol = cs.replaceAll("\r\n", " ");
     helpLineNo = json['help_line_no'];
     startTime = json['start_time'];
     endTime = json['end_time'];

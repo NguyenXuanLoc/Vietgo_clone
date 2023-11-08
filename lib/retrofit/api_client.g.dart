@@ -943,7 +943,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              'vendor/vendor_setting',
+              'setting',
               queryParameters: queryParameters,
               data: _data,
             )

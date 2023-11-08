@@ -163,7 +163,7 @@ abstract class RestClient {
   @POST("rest_faviroute")
   Future<FavoriteListModel> restFavorite();
 
-  @GET("vendor/vendor_setting")
+  @GET("setting")
   Future<AppSettingModel> setting();
 
   @POST("user_forgot_password")
