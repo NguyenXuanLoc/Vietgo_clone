@@ -147,34 +147,40 @@ class _SingleCuisineDetailsScreenState extends State<SingleCuisineDetailsScreen>
                                   children: [
                                     Container(
                                       child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(
                                               left: 10,
                                               right: 10,
                                             ),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Text(
-                                                  _listCuisineVendorRestaurants[index].name!,
-                                                  style: TextStyle(
-                                                      fontFamily: Constants.appFontBold,
-                                                      fontSize: ScreenUtil().setSp(16.0)),
-                                                ),
-                                              ],
-                                            ),
+                                            child: Text(
+                                                _listCuisineVendorRestaurants[
+                                                        index]
+                                                    .name!,
+                                                style: TextStyle(
+                                                    fontFamily:
+                                                        Constants.appFontBold,
+                                                    fontSize: ScreenUtil()
+                                                        .setSp(16.0)),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1),
                                           ),
                                           Container(
                                             alignment: Alignment.topLeft,
                                             child: Padding(
-                                              padding: const EdgeInsets.only(left: 10),
+                                              padding: const EdgeInsets.only(
+                                                  left: 10),
                                               child: Text(
-                                                getExploreRestaurantsFood(index),
+                                                getExploreRestaurantsFood(
+                                                    index),
                                                 style: TextStyle(
-                                                    fontFamily: Constants.appFont,
+                                                    fontFamily:
+                                                        Constants.appFont,
                                                     color: Constants.colorGray,
-                                                    fontSize: ScreenUtil().setSp(12.0)),
+                                                    fontSize: ScreenUtil()
+                                                        .setSp(12.0)),
                                               ),
                                             ),
                                           ),

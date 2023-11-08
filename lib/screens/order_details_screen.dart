@@ -14,6 +14,7 @@ import 'package:mealup/retrofit/base_model.dart';
 import 'package:mealup/retrofit/server_error.dart';
 import 'package:mealup/utils/SharedPreferenceUtil.dart';
 import 'package:mealup/utils/app_toolbar_with_btn_clr.dart';
+import 'package:mealup/utils/app_utils.dart';
 import 'package:mealup/utils/constants.dart';
 import 'package:mealup/utils/localization/language/languages.dart';
 import 'package:mealup/utils/rounded_corner_app_button.dart';
@@ -916,9 +917,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                           Padding(
                                             padding: const EdgeInsets.only(right: 10),
                                             child: Text(
-                                                SharedPreferenceUtil.getString(
-                                                        Constants.appSettingCurrencySymbol) +
-                                                    (orderItemList[position].price?.toStringAsFixed(2) ?? '0'),
+                                              AppUtils.formatMoney((orderItemList[position].price ?? 0).round())+ SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol),
                                                 style: TextStyle(
                                                     fontFamily: Constants.appFont, fontSize: 14)),
                                           )
@@ -944,9 +943,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     Padding(
                                       padding: const EdgeInsets.only(right: 10),
                                       child: Text(
-                                        SharedPreferenceUtil.getString(
-                                                Constants.appSettingCurrencySymbol) +
-                                            subTotal.toStringAsFixed(2),
+                                          AppUtils.formatMoney(subTotal.round())+ SharedPreferenceUtil.getString(
+                                                Constants.appSettingCurrencySymbol) ,
                                         style:
                                             TextStyle(fontFamily: Constants.appFont, fontSize: 14),
                                       ),
@@ -970,10 +968,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     Padding(
                                       padding: const EdgeInsets.only(right: 10),
                                       child: Text(
-                                        '+ ' +
+                                        '+ ' +"${ double.parse(strDeliveryCharge ?? '0').round()}"+
                                             SharedPreferenceUtil.getString(
-                                                Constants.appSettingCurrencySymbol) +
-                                            double.parse(strDeliveryCharge != '' && strDeliveryCharge != null ? strDeliveryCharge.toString(): '0').toStringAsFixed(2),
+                                                Constants.appSettingCurrencySymbol) ,
                                         style:
                                             TextStyle(fontFamily: Constants.appFont, fontSize: 14),
                                       ),
@@ -1016,11 +1013,9 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                               Padding(
                                                 padding: const EdgeInsets.only(right: 10),
                                                 child: Text(
-                                                  '- ' +
+                                                  '- ' + AppUtils.formatMoney(couponPrice.round())+
                                                       SharedPreferenceUtil.getString(
-                                                          Constants.appSettingCurrencySymbol) +
-                                                      ' ' +
-                                                      couponPrice.toStringAsFixed(2),
+                                                          Constants.appSettingCurrencySymbol),
                                                   style: TextStyle(
                                                       fontFamily: Constants.appFont,
                                                       color: Constants.colorLike,
@@ -1055,8 +1050,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                 padding: EdgeInsets.only(
                                                     right: ScreenUtil().setWidth(10)),
                                                 child: Text(
-                                                  "+ ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)} " +
-                                                      taxAmount.toStringAsFixed(2),
+                                                  "+ ${AppUtils.formatMoney(taxAmount.round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}",
                                                   style: TextStyle(
                                                       fontFamily: Constants.appFont,
                                                       fontSize: ScreenUtil().setSp(14)),
@@ -1092,8 +1086,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                                 padding: EdgeInsets.only(
                                                     right: ScreenUtil().setWidth(10)),
                                                 child: Text(
-                                                  "- ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)} " +
-                                                      double.parse(strVendorDiscount ?? '0').toStringAsFixed(2),
+                                                  "- ${AppUtils.formatMoney(double.parse(strVendorDiscount ?? '0').round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}",
                                                   style: TextStyle(
                                                       fontFamily: Constants.appFont,
                                                       fontSize: ScreenUtil().setSp(14)),
@@ -1128,9 +1121,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                       Padding(
                                         padding: const EdgeInsets.only(right: 10),
                                         child: Text(
-                                          SharedPreferenceUtil.getString(
-                                                  Constants.appSettingCurrencySymbol) +
-                                              grandTotalAmount.toStringAsFixed(2),
+                                        AppUtils.formatMoney(grandTotalAmount.round()) + SharedPreferenceUtil.getString(
+                                                  Constants.appSettingCurrencySymbol),
                                           style: TextStyle(
                                               fontFamily: Constants.appFont,
                                               color: Constants.colorTheme,

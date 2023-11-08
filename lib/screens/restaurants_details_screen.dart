@@ -17,6 +17,7 @@ import 'package:mealup/screen_animation_utils/transitions.dart';
 import 'package:mealup/screens/bottom_navigation/dashboard_screen.dart';
 import 'package:mealup/screens/offer_screen.dart';
 import 'package:mealup/utils/SharedPreferenceUtil.dart';
+import 'package:mealup/utils/app_utils.dart';
 import 'package:mealup/utils/constants.dart';
 import 'package:mealup/utils/database_helper.dart';
 import 'package:mealup/utils/localization/language/languages.dart';
@@ -111,8 +112,8 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                     padding: EdgeInsets.only(left: ScreenUtil().setWidth(25)),
                     child: Text(
                       '${Languages.of(context)!.labelTotalItem} $totalQty' +
-                          " : ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)} " +
-                          totalCartAmount.toStringAsFixed(2),
+                          " : " +
+                          AppUtils.formatMoney(totalCartAmount.round())+" ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}",
                       style: TextStyle(
                         color: Constants.colorWhite,
                         fontFamily: Constants.appFont,
@@ -343,32 +344,15 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: ScreenUtil().setHeight(5),
                                           bottom: ScreenUtil().setHeight(5)),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            SharedPreferenceUtil.getString(
-                                                Constants.appSettingCurrencySymbol),
-                                            style: TextStyle(
-                                                fontFamily: Constants.appFont,
-                                                color: Constants.colorTheme,
-                                                fontSize: ScreenUtil().setSp(18)),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(left: ScreenUtil().setWidth(5)),
-                                            child: Text(
-                                              '',
-                                              style: TextStyle(
-                                                  fontFamily: Constants.appFont,
-                                                  color: Constants.colorBlack,
-                                                  fontSize: ScreenUtil().setSp(16)),
-                                            ),
-                                          ),
-                                        ],
+                                      child: Text(
+                                        SharedPreferenceUtil.getString(
+                                            Constants.appSettingCurrencySymbol),
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                            fontFamily: Constants.appFont,
+                                            color: Constants.colorTheme,
+                                            fontSize: ScreenUtil().setSp(18)),
                                       ),
                                     ),
                                     Text(
@@ -995,9 +979,10 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                       left: ScreenUtil().setWidth(10),
                                       top: ScreenUtil().setHeight(10)),
                                   child: Text(
-                                    SharedPreferenceUtil.getString(
-                                            Constants.appSettingCurrencySymbol) +
-                                        "${item.price != null && item.price != '' ? item.price.toString() : "0"}", style: TextStyle(
+                                    "${item.price != null && item.price != '' ? AppUtils.formatMoney((item.price ?? 0).round()) : "0"}" +
+                                        SharedPreferenceUtil.getString(
+                                            Constants.appSettingCurrencySymbol),
+                                    style: TextStyle(
                                         fontFamily: Constants.appFont,
                                         color: Constants.colorBlack,
                                         fontSize: ScreenUtil().setSp(16)),
@@ -1848,12 +1833,11 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                                               fontSize: ScreenUtil().setSp(14)),
                                                         ),
                                                         Text(
+                                                          '${AppUtils.formatMoney(double.parse(_listFinalCustomization[outerIndex]
+                                                              .list[innerIndex]
+                                                              .price!??'0').round())}'+
                                                           SharedPreferenceUtil.getString(Constants
-                                                                  .appSettingCurrencySymbol) +
-                                                              ' ' +
-                                                              _listFinalCustomization[outerIndex]
-                                                                  .list[innerIndex]
-                                                                  .price!,
+                                                                  .appSettingCurrencySymbol),
                                                           style: TextStyle(
                                                               fontFamily: Constants.appFont,
                                                               fontSize: ScreenUtil().setSp(14)),
@@ -1918,7 +1902,7 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                   child: Text(
                                     '${Languages.of(context)!.labelItem} ${totalQty + 1}' +
                                         '  |  '
-                                            '${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)} ${currentFoodItemPrice + tempPrice}',
+                                            '${AppUtils.formatMoney((currentFoodItemPrice + tempPrice).round())} ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}',
                                     style: TextStyle(
                                         fontFamily: Constants.appFont,
                                         color: Constants.colorWhite,
@@ -2061,7 +2045,7 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                   child: Text(
                                     'Item ${totalQty + 1}' +
                                         '  |  '
-                                            '${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)} ${currentFoodItemPrice + tempPrice}',
+                                            '${AppUtils.formatMoney((currentFoodItemPrice + tempPrice).round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}}',
                                     style: TextStyle(
                                         fontFamily: Constants.appFont,
                                         color: Constants.colorWhite,
@@ -2196,12 +2180,11 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                                           fontSize: ScreenUtil().setSp(14)),
                                                     ),
                                                     Text(
-                                                      SharedPreferenceUtil.getString(
-                                                              Constants.appSettingCurrencySymbol) +
-                                                          ' ' +
-                                                          _listFinalCustomization[outerIndex]
-                                                              .list[innerIndex]
-                                                              .price!,
+                                                        AppUtils.formatMoney(double.parse(_listFinalCustomization[outerIndex]
+                                                            .list[innerIndex]
+                                                            .price??'0').round())+ SharedPreferenceUtil.getString(
+                                                              Constants.appSettingCurrencySymbol)
+                                                           ,
                                                       style: TextStyle(
                                                           fontFamily: Constants.appFont,
                                                           fontSize: ScreenUtil().setSp(14)),

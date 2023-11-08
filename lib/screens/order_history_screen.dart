@@ -19,6 +19,7 @@ import 'package:mealup/screens/order_review_screen.dart';
 import 'package:mealup/screens/track_your_order_screen_here_map.dart';
 import 'package:mealup/utils/SharedPreferenceUtil.dart';
 import 'package:mealup/utils/app_toolbar_with_btn_clr.dart';
+import 'package:mealup/utils/app_utils.dart';
 import 'package:mealup/utils/constants.dart';
 import 'package:mealup/utils/localization/language/languages.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -320,9 +321,9 @@ class _OrderHistoryScreenState extends State<OrderHistoryScreen> {
                                                             padding: const EdgeInsets.only(
                                                                 left: 10, top: 10),
                                                             child: Text(
+                                                              AppUtils.formatMoney((_listOrderHistory[index].amount??0).round())+
                                                               SharedPreferenceUtil.getString(Constants
-                                                                      .appSettingCurrencySymbol) +
-                                                                  '${_listOrderHistory[index].amount?.toStringAsFixed(2)}',
+                                                                      .appSettingCurrencySymbol),
                                                               style: TextStyle(
                                                                   fontFamily: Constants.appFont,
                                                                   fontSize: 14),
