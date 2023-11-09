@@ -5,8 +5,8 @@ import 'localization/language/languages.dart';
 
 class Constants {
   /*map key*/
-  static final String androidKey = 'enter_your_android_key';
-  static final String iosKey = 'Enter_Your_iOS_GoogleMap_Key';
+  static final String androidKey = 'AIzaSyAab2s5g7T8wwFuL5bewosrBog4ObWWPdI';
+  static final String iosKey = 'AIzaSyAab2s5g7T8wwFuL5bewosrBog4ObWWPdI';
 
 
   static Color colorBlack = Color(0xFF090E21);
