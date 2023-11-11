@@ -515,11 +515,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                             Expanded(
                                               child: Container(
                                                 margin: EdgeInsets.only(top: 20),
-                                                height: 130,
+                                                // height: 130,
                                                 child: Column(
                                                   children: [
                                                     Container(
-                                                      height: 65,
+                                                      // height: 65,
                                                       child: Column(
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment.stretch,
@@ -876,50 +876,78 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                                     return Padding(
                                       padding: const EdgeInsets.only(top: 15, bottom: 10),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                          Expanded(
+                                              child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    orderItemList[position].itemName!,
-                                                    style: TextStyle(
-                                                        fontFamily: Constants.appFont,
-                                                        fontSize: ScreenUtil().setSp(16)),
-                                                  ),
-                                                  Text(
-                                                    ' X ' + orderItemList[position].qty.toString(),
-                                                    style: TextStyle(
-                                                        fontFamily: Constants.appFont,
-                                                        color: Constants.colorTheme,
-                                                        fontSize: ScreenUtil().setSp(14)),
-                                                  ),
-                                                ],
-                                              ),
-                                              orderItemList[position].custimization != null &&
+                                              RichText(
+                                                  text: TextSpan(
+                                                      text: orderItemList[
+                                                              position]
+                                                          .itemName!,
+                                                      style: TextStyle(color: Colors.black,
+                                                          fontFamily:
+                                                              Constants.appFont,
+                                                          fontSize: ScreenUtil()
+                                                              .setSp(16)),
+                                                      children: [
+                                                    TextSpan(
+                                                      text: ' X ' +
+                                                          orderItemList[
+                                                                  position]
+                                                              .qty
+                                                              .toString(),
+                                                      style: TextStyle(
+                                                          fontFamily:
+                                                              Constants.appFont,
+                                                          color: Constants
+                                                              .colorTheme,
+                                                          fontSize: ScreenUtil()
+                                                              .setSp(14)),
+                                                    )
+                                                  ])),
+                                              orderItemList[position]
+                                                              .custimization !=
+                                                          null &&
                                                       orderItemList[position]
                                                               .custimization!
                                                               .length >
                                                           0
                                                   ? Container(
                                                       child: Text(
-                                                        Languages.of(context)!.labelCustomizable,
+                                                        Languages.of(context)!
+                                                            .labelCustomizable,
                                                         style: TextStyle(
-                                                            color: Constants.colorTheme,
-                                                            fontFamily: Constants.appFont),
+                                                            color: Constants
+                                                                .colorTheme,
+                                                            fontFamily:
+                                                                Constants
+                                                                    .appFont),
                                                       ),
                                                     )
                                                   : Container()
                                             ],
-                                          ),
+                                          )),
                                           Padding(
-                                            padding: const EdgeInsets.only(right: 10),
+                                            padding: const EdgeInsets.only(
+                                                right: 10),
                                             child: Text(
-                                              AppUtils.formatMoney((orderItemList[position].price ?? 0).round())+ SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol),
+                                                AppUtils.formatMoney(
+                                                        (orderItemList[position]
+                                                                    .price ??
+                                                                0)
+                                                            .round()) +
+                                                    SharedPreferenceUtil
+                                                        .getString(Constants
+                                                            .appSettingCurrencySymbol),
                                                 style: TextStyle(
-                                                    fontFamily: Constants.appFont, fontSize: 14)),
+                                                    fontFamily:
+                                                        Constants.appFont,
+                                                    fontSize: 14)),
                                           )
                                         ],
                                       ),
