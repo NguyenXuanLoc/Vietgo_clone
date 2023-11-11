@@ -76,8 +76,12 @@ dependencies:
   modal_bottom_sheet: ^3.0.0-pre
   flutter_polyline_points: ^1.0.0
   carousel_slider: ^4.1.1
-  google_maps_place_picker_mb: ^2.0.0-mb.20
+  google_maps_place_picker_mb:
+    git:
+      url: git@github.com:NguyenXuanLoc/google_maps_place_picker_mb_2.0.0.git
+      ref: master
   permission_handler: ^10.2.0
+  dio: any
 
 
 dependency_overrides:
