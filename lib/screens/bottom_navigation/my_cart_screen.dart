@@ -766,7 +766,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
           iconTheme: IconThemeData(color: Constants.colorBlack),
           backgroundColor: Colors.transparent,
           title: Text(
-            Languages.of(context)!.labelYourCart,
+            Languages.of(context)!.labelYourCart+'',
             style: TextStyle(
                 color: Constants.colorBlack,
                 fontWeight: FontWeight.w900,
@@ -966,66 +966,72 @@ class _MyCartScreenState extends State<MyCartScreen> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(15.0),
-                                    child: CachedNetworkImage(
-                                      height: ScreenUtil().setHeight(70),
-                                      width: ScreenUtil().setWidth(70),
-                                      imageUrl: restImage!,
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) =>
-                                          SpinKitFadingCircle(
-                                              color:
-                                              Constants.colorTheme),
-                                      errorWidget:
-                                          (context, url, error) =>
-                                          Container(
-                                            child: Center(
-                                                child: Image.asset(
-                                                    'images/noimage.png')),
-                                          ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: ScreenUtil().setWidth(10),
-                                          right:
-                                          ScreenUtil().setWidth(5)),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            restName!,
-                                            style: TextStyle(
-                                                fontFamily:
-                                                Constants.appFontBold,
-                                                fontSize: ScreenUtil()
-                                                    .setSp(16)),
-                                          ),
-                                          Text(
-                                            '',
-                                            style: TextStyle(
-                                                fontFamily:
-                                                Constants.appFont,
-                                                color:
-                                                Constants.colorGray,
-                                                fontSize: ScreenUtil()
-                                                    .setSp(12)),
-                                          ),
-                                        ],
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: IntrinsicHeight(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                          AspectRatio(
+                                              aspectRatio: 1 / 1,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                                child: CachedNetworkImage(
+                                                  height: ScreenUtil()
+                                                      .setHeight(70),
+                                                  width:
+                                                      ScreenUtil().setWidth(70),
+                                                  imageUrl: restImage!,
+                                                  fit: BoxFit.cover,
+                                                  placeholder: (context, url) =>
+                                                      SpinKitFadingCircle(
+                                                          color: Constants
+                                                              .colorTheme),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          Container(
+                                                    child: Center(
+                                                        child: Image.asset(
+                                                            'images/noimage.png')),
+                                                  ),
+                                                ),
+                                              )),
+                                          Expanded(
+                                            child: Padding(
+                                        padding: EdgeInsets.only(
+                                            left: ScreenUtil().setWidth(10),
+                                            right:
+                                            ScreenUtil().setWidth(5)),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              restName!,
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                  Constants.appFontBold,
+                                                  fontSize: ScreenUtil()
+                                                      .setSp(16)),
+                                            ),
+                                            Text(
+                                              '',
+                                              style: TextStyle(
+                                                  fontFamily:
+                                                  Constants.appFont,
+                                                  color:
+                                                  Constants.colorGray,
+                                                  fontSize: ScreenUtil()
+                                                      .setSp(12)),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -1396,97 +1402,134 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 return ScopedModelDescendant<CartModel>(
                                   builder: (context, child, model) {
                                     return Container(
-                                      height: ScreenUtil().setHeight(95),
+                                      height: ScreenUtil().setHeight(85),
                                       child: Padding(
                                         padding: EdgeInsets.only(
                                             left:
                                             ScreenUtil().setWidth(5),
                                             top: ScreenUtil()
-                                                .setHeight(15),
+                                                .setHeight(5),
                                             bottom: ScreenUtil()
                                                 .setHeight(5)),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                              BorderRadius.circular(
-                                                  15.0),
-                                              child: CachedNetworkImage(
-                                                height: ScreenUtil()
-                                                    .setHeight(100),
-                                                width: ScreenUtil()
-                                                    .setWidth(70),
-                                                imageUrl:
-                                                cartMenuItem[position]
-                                                    .image!,
-                                                fit: BoxFit.fill,
-                                                placeholder: (context,
-                                                    url) =>
-                                                    SpinKitFadingCircle(
-                                                        color: Constants
-                                                            .colorTheme),
-                                                errorWidget: (context,
-                                                    url, error) =>
-                                                    Container(
-                                                      child: Center(
-                                                          child: Image.asset(
-                                                              'images/noimage.png')),
-                                                    ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: ScreenUtil()
-                                                      .setWidth(10),
-                                                  top: 5),
-                                              child: Container(
-                                                alignment:
-                                                Alignment.topLeft,
-
-                                                child: (() {
-                                                  if (cartMenuItem[
-                                                  position]
-                                                      .type ==
-                                                      'veg') {
-                                                    return Row(
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                          const EdgeInsets
-                                                              .only(
-                                                              right:
-                                                              2),
+                                        child: IntrinsicHeight(
+                                          child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    AspectRatio(
+                                                        aspectRatio: 1 / 1,
+                                                        child: ClipRRect(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      15.0),
                                                           child:
-                                                          SvgPicture
-                                                              .asset(
-                                                            'images/ic_veg.svg',
-                                                            height: ScreenUtil()
-                                                                .setHeight(
-                                                                10.0),
-                                                            width: ScreenUtil()
-                                                                .setHeight(
-                                                                10.0),
+                                                              CachedNetworkImage(
+                                                            imageUrl:
+                                                                cartMenuItem[
+                                                                        position]
+                                                                    .image!,
+                                                            fit: BoxFit.fill,
+                                                            placeholder: (context,
+                                                                    url) =>
+                                                                SpinKitFadingCircle(
+                                                                    color: Constants
+                                                                        .colorTheme),
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    Container(
+                                                              child: Center(
+                                                                  child: Image
+                                                                      .asset(
+                                                                          'images/noimage.png')),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  } else if (cartMenuItem[
-                                                  position]
-                                                      .type ==
-                                                      'non_veg') {
-                                                    return Row(
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                          const EdgeInsets
-                                                              .only(
-                                                              right:
-                                                              2),
-                                                          child:
-                                                          SvgPicture
-                                                              .asset(
+                                                        )),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: ScreenUtil()
+                                                              .setWidth(10),
+                                                          top: 5),
+                                                      child: Container(
+                                                        alignment:
+                                                            Alignment.topLeft,
+
+                                                  child: (() {
+                                                    if (cartMenuItem[
+                                                    position]
+                                                        .type ==
+                                                        'veg') {
+                                                      return Row(
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                right:
+                                                                2),
+                                                            child:
+                                                            SvgPicture
+                                                                .asset(
+                                                              'images/ic_veg.svg',
+                                                              height: ScreenUtil()
+                                                                  .setHeight(
+                                                                  10.0),
+                                                              width: ScreenUtil()
+                                                                  .setHeight(
+                                                                  10.0),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    } else if (cartMenuItem[
+                                                    position]
+                                                        .type ==
+                                                        'non_veg') {
+                                                      return Row(
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                                right:
+                                                                2),
+                                                            child:
+                                                            SvgPicture
+                                                                .asset(
+                                                              'images/ic_non_veg.svg',
+                                                              height: ScreenUtil()
+                                                                  .setHeight(
+                                                                  10.0),
+                                                              width: ScreenUtil()
+                                                                  .setHeight(
+                                                                  10.0),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    } else if (cartMenuItem[position].type == 'all') {
+                                                      return Row(
+                                                        children:[
+                                                          Padding(
+                                                            padding: EdgeInsets
+                                                                .only(
+                                                                right: ScreenUtil()
+                                                                    .setWidth(
+                                                                    5)),
+                                                            child:
+                                                            SvgPicture
+                                                                .asset(
+                                                              'images/ic_veg.svg',
+                                                              height: ScreenUtil()
+                                                                  .setHeight(
+                                                                  10.0),
+                                                              width: ScreenUtil()
+                                                                  .setHeight(
+                                                                  10.0),
+                                                            ),
+                                                          ),
+                                                          SvgPicture.asset(
                                                             'images/ic_non_veg.svg',
                                                             height: ScreenUtil()
                                                                 .setHeight(
@@ -1494,747 +1537,715 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                             width: ScreenUtil()
                                                                 .setHeight(
                                                                 10.0),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  } else if (cartMenuItem[position].type == 'all') {
-                                                    return Row(
-                                                      children:[
-                                                        Padding(
-                                                          padding: EdgeInsets
-                                                              .only(
-                                                              right: ScreenUtil()
-                                                                  .setWidth(
-                                                                  5)),
-                                                          child:
-                                                          SvgPicture
-                                                              .asset(
-                                                            'images/ic_veg.svg',
-                                                            height: ScreenUtil()
-                                                                .setHeight(
-                                                                10.0),
-                                                            width: ScreenUtil()
-                                                                .setHeight(
-                                                                10.0),
-                                                          ),
-                                                        ),
-                                                        SvgPicture.asset(
-                                                          'images/ic_non_veg.svg',
-                                                          height: ScreenUtil()
-                                                              .setHeight(
-                                                              10.0),
-                                                          width: ScreenUtil()
-                                                              .setHeight(
-                                                              10.0),
-                                                        )
-                                                      ],
-                                                    );
-                                                  }
-                                                }()),
+                                                          )
+                                                        ],
+                                                      );
+                                                    }
+                                                  }()),
+                                                ),
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: ScreenUtil()
-                                                      .setWidth(10)),
-                                              child: Container(
-                                                width: ScreenUtil()
-                                                    .setWidth(180),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .start,
-                                                  crossAxisAlignment:
-                                                  CrossAxisAlignment
-                                                      .stretch,
-                                                  children: [
-                                                    Text(
-                                                      cartMenuItem[
-                                                      position]
-                                                          .name!,
-                                                      maxLines: 2,
-                                                      overflow:
-                                                      TextOverflow
-                                                          .ellipsis,
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                          Constants
-                                                              .appFont,
-                                                          fontSize:
-                                                          ScreenUtil()
-                                                              .setSp(
-                                                              16)),
-                                                    ),
-                                                          Padding(
-                                                            padding: EdgeInsets.only(
-                                                                top: ScreenUtil()
-                                                                    .setHeight(
-                                                                        5)),
-                                                            child: Text(
-                                                              AppUtils.formatMoney(
-                                                                      cartMenuItem[
-                                                                              position]
-                                                                          .price!
-                                                                          .toInt()) +" "+
-                                                                  SharedPreferenceUtil
-                                                                      .getString(
-                                                                          Constants
-                                                                              .appSettingCurrencySymbol),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: TextStyle(
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: ScreenUtil()
+                                                        .setWidth(10)),
+                                                child: Container(
+                                                  width: ScreenUtil()
+                                                      .setWidth(180),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .start,
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .stretch,
+                                                    children: [
+                                                      Text(
+                                                        cartMenuItem[
+                                                        position]
+                                                            .name!,
+                                                        maxLines: 2,
+                                                        overflow:
+                                                        TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
                                                             fontFamily:
                                                             Constants
-                                                                .appFontBold,
-                                                            color: Constants
-                                                                .colorBlack,
+                                                                .appFont,
                                                             fontSize:
                                                             ScreenUtil()
                                                                 .setSp(
-                                                                14)),
+                                                                16)),
                                                       ),
-                                                    ),
-                                                    cartMenuItem[position]
-                                                        .custimization!
-                                                        .length >
-                                                        0
-                                                        ? InkWell(
-                                                      onTap: () {
-                                                        var ab;
-                                                        String?
-                                                        finalFoodCustomization,
-                                                            currentPriceWithoutCustomization;
-                                                        double?
-                                                        price,
-                                                            tempPrice;
-                                                        for (int q =
-                                                        0;
-                                                        q < _listRestaurantsMenu
-                                                            .length;
-                                                        q++) {
-                                                          for (int w =
+                                                            Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  top: ScreenUtil()
+                                                                      .setHeight(
+                                                                          5)),
+                                                              child: Text(
+                                                                AppUtils.formatMoney(
+                                                                        cartMenuItem[
+                                                                                position]
+                                                                            .price!
+                                                                            .toInt()) +""+
+                                                                    SharedPreferenceUtil
+                                                                        .getString(
+                                                                            Constants
+                                                                                .appSettingCurrencySymbol),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .start,
+                                                                style: TextStyle(
+                                                              fontFamily:
+                                                              Constants
+                                                                  .appFontBold,
+                                                              color: Constants
+                                                                  .colorBlack,
+                                                              fontSize:
+                                                              ScreenUtil()
+                                                                  .setSp(
+                                                                  14)),
+                                                        ),
+                                                      ),
+                                                      cartMenuItem[position]
+                                                          .custimization!
+                                                          .length >
+                                                          0
+                                                          ? InkWell(
+                                                        onTap: () {
+                                                          var ab;
+                                                          String?
+                                                          finalFoodCustomization,
+                                                              currentPriceWithoutCustomization;
+                                                          double?
+                                                          price,
+                                                              tempPrice;
+                                                          for (int q =
                                                           0;
-                                                          w <
-                                                              _listRestaurantsMenu[q]
-                                                                  .submenu!
-                                                                  .length;
-                                                          w++) {
+                                                          q < _listRestaurantsMenu
+                                                              .length;
+                                                          q++) {
+                                                            for (int w =
+                                                            0;
+                                                            w <
+                                                                _listRestaurantsMenu[q]
+                                                                    .submenu!
+                                                                    .length;
+                                                            w++) {
+                                                              if (cartMenuItem[position]
+                                                                  .id ==
+                                                                  _listRestaurantsMenu[q]
+                                                                      .submenu![w]
+                                                                      .id) {
+                                                                currentPriceWithoutCustomization =
+                                                                    '${_listRestaurantsMenu[q]
+                                                                        .submenu![w]
+                                                                        .price}';
+                                                              }
+                                                            }
+                                                          }
+                                                          print(
+                                                              currentPriceWithoutCustomization);
+                                                          for (int z =
+                                                          0;
+                                                          z < model.cart.length;
+                                                          z++) {
                                                             if (cartMenuItem[position]
                                                                 .id ==
-                                                                _listRestaurantsMenu[q]
-                                                                    .submenu![w]
+                                                                model
+                                                                    .cart[z]
                                                                     .id) {
-                                                              currentPriceWithoutCustomization =
-                                                                  '${_listRestaurantsMenu[q]
-                                                                      .submenu![w]
-                                                                      .price}';
-                                                            }
-                                                          }
-                                                        }
-                                                        print(
-                                                            currentPriceWithoutCustomization);
-                                                        for (int z =
-                                                        0;
-                                                        z < model.cart.length;
-                                                        z++) {
-                                                          if (cartMenuItem[position]
-                                                              .id ==
-                                                              model
-                                                                  .cart[z]
-                                                                  .id) {
-                                                            ab = json.decode(
-                                                                model
-                                                                    .cart[z]
-                                                                    .foodCustomization!);
-                                                            finalFoodCustomization =
-                                                                model
-                                                                    .cart[z]
-                                                                    .foodCustomization;
-                                                            price = model
-                                                                .cart[z]
-                                                                .price;
-                                                            tempPrice = model
-                                                                .cart[z]
-                                                                .tempPrice;
-                                                          }
-                                                        }
-                                                        List<String?>
-                                                        nameOfcustomization =
-                                                        [];
-                                                        for (int i =
-                                                        0;
-                                                        i < ab.length;
-                                                        i++) {
-                                                          nameOfcustomization
-                                                              .add(ab[i]
-                                                          [
-                                                          'data']
-                                                          [
-                                                          'name']);
-                                                        }
-                                                        cartMenuItem[
-                                                        position]
-                                                            .isRepeatCustomization =
-                                                        true;
-                                                        openFoodCustomizationBottomSheet(
-                                                          model,
-                                                          cartMenuItem[
-                                                          position],
-                                                          double.parse(
-                                                              cartMenuItem[
-                                                              position]
-                                                                  .price
-                                                                  .toString()),
-                                                          double.parse(
-                                                              currentPriceWithoutCustomization!),
-                                                          totalPrice,
-                                                          cartMenuItem[
-                                                          position]
-                                                              .custimization!,
-                                                          finalFoodCustomization!,
-                                                          position,
-                                                        );
-                                                      },
-                                                      child:
-                                                      Container(
-                                                        child: Row(
-                                                          children: [
-                                                            Text(
-                                                              Languages.of(
-                                                                  context)!
-                                                                  .labelCustomizable,
-                                                              style: TextStyle(
-                                                                  fontFamily: Constants
-                                                                      .appFont,
-                                                                  color: Constants
-                                                                      .colorTheme,
-                                                                  fontSize: ScreenUtil()
-                                                                      .setSp(
-                                                                      15)),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                              EdgeInsets.only(
-                                                                  left: ScreenUtil()
-                                                                      .setWidth(
-                                                                      5)),
-                                                              child:
-                                                              SvgPicture.asset(
-                                                                'images/ic_green_arrow.svg',
-                                                                width:
-                                                                13,
-                                                                height:
-                                                                10,
-                                                                color:
-                                                                Constants
-                                                                    .colorBlack,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        margin: EdgeInsets.only(
-                                                            top: ScreenUtil()
-                                                                .setHeight(5)),
-                                                      ),
-                                                    )
-                                                        : Container(),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      right: ScreenUtil()
-                                                          .setWidth(15)),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .end,
-                                                    children: [
-                                                      GestureDetector(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            if (cartMenuItem[
-                                                            position]
-                                                                .count >
-                                                                1) {
-                                                              cartMenuItem[
-                                                              position]
-                                                                  .count--;
-                                                              model
-                                                                  .updateProduct(
-                                                                  cartMenuItem[
-                                                                  position]
-                                                                      .id,
-                                                                  cartMenuItem[
-                                                                  position]
-                                                                      .count);
-                                                              String?
-                                                              customization,
-                                                                  currentPriceWithoutCustomization;
-                                                              for (int z = 0;
-                                                              z <
-                                                                  model
-                                                                      .cart
-                                                                      .length;
-                                                              z++) {
-                                                                if (cartMenuItem[
-                                                                position]
-                                                                    .id ==
-                                                                    model
-                                                                        .cart[
-                                                                    z]
-                                                                        .id) {
-                                                                  customization =
-                                                                      model
-                                                                          .cart[z]
-                                                                          .foodCustomization;
-                                                                }
-                                                              }
-
-                                                              for (int q = 0;
-                                                              q <
-                                                                  _listRestaurantsMenu
-                                                                      .length;
-                                                              q++) {
-                                                                for (int w =
-                                                                0;
-                                                                w <
-                                                                    _listRestaurantsMenu[q]
-                                                                        .submenu!
-                                                                        .length;
-                                                                w++) {
-                                                                  if (cartMenuItem[position]
-                                                                      .id ==
-                                                                      _listRestaurantsMenu[q]
-                                                                          .submenu![w]
-                                                                          .id) {
-                                                                    currentPriceWithoutCustomization =
-                                                                        '${_listRestaurantsMenu[
-                                                                        q]
-                                                                            .submenu![
-                                                                        w]
-                                                                            .price}';
-                                                                  }
-                                                                }
-                                                              }
-                                                              print(
-                                                                  currentPriceWithoutCustomization);
-
-                                                              if (cartMenuItem[
-                                                              position]
-                                                                  .custimization!
-                                                                  .length >
-                                                                  0) {
-                                                                int isRepeatCustomization =
-                                                                cartMenuItem[position]
-                                                                    .isRepeatCustomization!
-                                                                    ? 1
-                                                                    : 0;
-                                                                _updateForCustomizedFood(
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .id,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .count,
-                                                                    double
-                                                                        .parse(
-                                                                        cartMenuItem[
-                                                                        position]
-                                                                            .price
-                                                                            .toString()),
-                                                                    currentPriceWithoutCustomization,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .image,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .name,
-                                                                    restId,
-                                                                    restName,
-                                                                    customization,
-                                                                    isRepeatCustomization,
-                                                                    1,
-                                                                    "decrement");
-                                                              } else {
-                                                                _update(
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .id,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .count,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .price
-                                                                        .toString(),
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .image,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .name,
-                                                                    restId,
-                                                                    restName,
-                                                                    "decrement");
-                                                              }
-                                                            } else {
-                                                              cartMenuItem[
-                                                              position]
-                                                                  .isAdded =
-                                                              false;
-                                                              cartMenuItem[
-                                                              position]
-                                                                  .count = 0;
-                                                              model
-                                                                  .updateProduct(
-                                                                  cartMenuItem[
-                                                                  position]
-                                                                      .id,
-                                                                  cartMenuItem[
-                                                                  position]
-                                                                      .count);
-
-                                                              String?
-                                                              customization,
-                                                                  currentPriceWithoutCustomization;
-                                                              for (int z = 0;
-                                                              z <
-                                                                  model
-                                                                      .cart
-                                                                      .length;
-                                                              z++) {
-                                                                if (cartMenuItem[
-                                                                position]
-                                                                    .id ==
-                                                                    model
-                                                                        .cart[
-                                                                    z]
-                                                                        .id) {
-                                                                  customization =
-                                                                      model
-                                                                          .cart[z]
-                                                                          .foodCustomization;
-                                                                }
-                                                              }
-
-                                                              for (int q = 0;
-                                                              q <
-                                                                  _listRestaurantsMenu
-                                                                      .length;
-                                                              q++) {
-                                                                for (int w =
-                                                                0;
-                                                                w <
-                                                                    _listRestaurantsMenu[q]
-                                                                        .submenu!
-                                                                        .length;
-                                                                w++) {
-                                                                  if (cartMenuItem[position]
-                                                                      .id ==
-                                                                      _listRestaurantsMenu[q]
-                                                                          .submenu![w]
-                                                                          .id) {
-                                                                    currentPriceWithoutCustomization =
-                                                                        '${_listRestaurantsMenu[
-                                                                        q]
-                                                                            .submenu![
-                                                                        w]
-                                                                            .price}';
-                                                                  }
-                                                                }
-                                                              }
-                                                              print(
-                                                                  currentPriceWithoutCustomization);
-
-                                                              if (cartMenuItem[
-                                                              position]
-                                                                  .custimization!
-                                                                  .length >
-                                                                  0) {
-                                                                int isRepeatCustomization =
-                                                                cartMenuItem[position]
-                                                                    .isRepeatCustomization!
-                                                                    ? 1
-                                                                    : 0;
-                                                                _updateForCustomizedFood(
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .id,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .count,
-                                                                    double
-                                                                        .parse(
-                                                                        cartMenuItem[
-                                                                        position]
-                                                                            .price
-                                                                            .toString()),
-                                                                    currentPriceWithoutCustomization,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .image,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .name,
-                                                                    restId,
-                                                                    restName,
-                                                                    customization,
-                                                                    isRepeatCustomization,
-                                                                    1,
-                                                                    "decrement");
-                                                              } else {
-                                                                _update(
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .id,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .count,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .price
-                                                                        .toString(),
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .image,
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .name,
-                                                                    restId,
-                                                                    restName,
-                                                                    "decrement");
-                                                              }
-                                                            }
-                                                          });
-                                                        },
-                                                        child: Container(
-                                                          height: ScreenUtil()
-                                                              .setHeight(21),
-                                                          width: ScreenUtil()
-                                                              .setWidth(36),
-                                                          decoration:
-                                                          BoxDecoration(
-                                                            borderRadius: BorderRadius
-                                                                .only(
-                                                                topLeft: Radius
-                                                                    .circular(
-                                                                    10),
-                                                                topRight: Radius
-                                                                    .circular(
-                                                                    10)),
-                                                            color: Color(
-                                                                0xfff1f1f1),
-                                                          ),
-                                                          child: Center(
-                                                            child: Text(
-                                                              '-',
-                                                              style: TextStyle(
-                                                                  color: Constants
-                                                                      .colorTheme),
-                                                              textAlign:
-                                                              TextAlign
-                                                                  .center,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets
-                                                            .only(
-                                                            top: ScreenUtil()
-                                                                .setHeight(5),
-                                                            bottom:
-                                                            ScreenUtil()
-                                                                .setHeight(
-                                                                5)),
-                                                        child: Container(
-                                                          alignment: Alignment
-                                                              .center,
-                                                          height: ScreenUtil()
-                                                              .setHeight(21),
-                                                          width: ScreenUtil()
-                                                              .setWidth(36),
-                                                          child: Text(
-                                                            cartMenuItem[
-                                                            position]
-                                                                .count
-                                                                .toString(),
-                                                            style: TextStyle(
-                                                                fontFamily:
-                                                                Constants
-                                                                    .appFont),
-                                                            textAlign:
-                                                            TextAlign
-                                                                .center,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      //increment section
-                                                      GestureDetector(
-                                                        onTap: () {
-                                                          setState(() {
-                                                            cartMenuItem[
-                                                            position]
-                                                                .count++;
-                                                          });
-                                                          model.updateProduct(
-                                                              cartMenuItem[
-                                                              position]
-                                                                  .id,
-                                                              cartMenuItem[
-                                                              position]
-                                                                  .count);
-                                                          if (cartMenuItem[
-                                                          position]
-                                                              .custimization!
-                                                              .length >
-                                                              0) {
-                                                            int isRepeatCustomization =
-                                                            cartMenuItem[
-                                                            position]
-                                                                .isRepeatCustomization!
-                                                                ? 1
-                                                                : 0;
-                                                            String?
-                                                            customization,
-                                                                currentPriceWithoutCustomization;
-                                                            for (int z = 0;
-                                                            z <
-                                                                model.cart
-                                                                    .length;
-                                                            z++) {
-                                                              if (cartMenuItem[
-                                                              position]
-                                                                  .id ==
+                                                              ab = json.decode(
                                                                   model
                                                                       .cart[z]
-                                                                      .id) {
-                                                                customization =
-                                                                    model
-                                                                        .cart[
-                                                                    z]
-                                                                        .foodCustomization;
-                                                              }
+                                                                      .foodCustomization!);
+                                                              finalFoodCustomization =
+                                                                  model
+                                                                      .cart[z]
+                                                                      .foodCustomization;
+                                                              price = model
+                                                                  .cart[z]
+                                                                  .price;
+                                                              tempPrice = model
+                                                                  .cart[z]
+                                                                  .tempPrice;
                                                             }
-                                                            for (int q = 0;
-                                                            q <
-                                                                _listRestaurantsMenu
-                                                                    .length;
-                                                            q++) {
-                                                              for (int w = 0;
-                                                              w <
-                                                                  _listRestaurantsMenu[q]
-                                                                      .submenu!
-                                                                      .length;
-                                                              w++) {
-                                                                if (cartMenuItem[
-                                                                position]
-                                                                    .id ==
-                                                                    _listRestaurantsMenu[
-                                                                    q]
-                                                                        .submenu![
-                                                                    w]
-                                                                        .id) {
-                                                                  currentPriceWithoutCustomization =
-                                                                      '${_listRestaurantsMenu[
-                                                                      q]
-                                                                          .submenu![
-                                                                      w]
-                                                                          .price}';
-                                                                }
-                                                              }
-                                                            }
-                                                            print(
-                                                                currentPriceWithoutCustomization);
-                                                            _updateForCustomizedFood(
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .id,
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .count,
-                                                                double.parse(
-                                                                    cartMenuItem[
-                                                                    position]
-                                                                        .price
-                                                                        .toString()),
-                                                                currentPriceWithoutCustomization,
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .image,
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .name,
-                                                                restId,
-                                                                restName,
-                                                                customization,
-                                                                isRepeatCustomization,
-                                                                1,
-                                                                "increment");
-                                                          } else {
-                                                            _update(
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .id,
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .count,
+                                                          }
+                                                          List<String?>
+                                                          nameOfcustomization =
+                                                          [];
+                                                          for (int i =
+                                                          0;
+                                                          i < ab.length;
+                                                          i++) {
+                                                            nameOfcustomization
+                                                                .add(ab[i]
+                                                            [
+                                                            'data']
+                                                            [
+                                                            'name']);
+                                                          }
+                                                          cartMenuItem[
+                                                          position]
+                                                              .isRepeatCustomization =
+                                                          true;
+                                                          openFoodCustomizationBottomSheet(
+                                                            model,
+                                                            cartMenuItem[
+                                                            position],
+                                                            double.parse(
                                                                 cartMenuItem[
                                                                 position]
                                                                     .price
-                                                                    .toString(),
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .image,
-                                                                cartMenuItem[
-                                                                position]
-                                                                    .name,
-                                                                restId,
-                                                                restName,
-                                                                "increment");
-                                                          }
-                                                          incrementTax();
+                                                                    .toString()),
+                                                            double.parse(
+                                                                currentPriceWithoutCustomization!),
+                                                            totalPrice,
+                                                            cartMenuItem[
+                                                            position]
+                                                                .custimization!,
+                                                            finalFoodCustomization!,
+                                                            position,
+                                                          );
                                                         },
-                                                        child: Container(
-                                                          height: ScreenUtil()
-                                                              .setHeight(21),
-                                                          width: ScreenUtil()
-                                                              .setWidth(36),
-                                                          decoration:
-                                                          BoxDecoration(
-                                                            borderRadius: BorderRadius
-                                                                .only(
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                    10),
-                                                                bottomRight: Radius
-                                                                    .circular(
-                                                                    10)),
-                                                            color: Color(
-                                                                0xfff1f1f1),
+                                                        child:
+                                                        Container(
+                                                          child: Row(
+                                                            children: [
+                                                              Text(
+                                                                Languages.of(
+                                                                    context)!
+                                                                    .labelCustomizable,
+                                                                style: TextStyle(
+                                                                    fontFamily: Constants
+                                                                        .appFont,
+                                                                    color: Constants
+                                                                        .colorTheme,
+                                                                    fontSize: ScreenUtil()
+                                                                        .setSp(
+                                                                        15)),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                EdgeInsets.only(
+                                                                    left: ScreenUtil()
+                                                                        .setWidth(
+                                                                        5)),
+                                                                child:
+                                                                SvgPicture.asset(
+                                                                  'images/ic_green_arrow.svg',
+                                                                  width:
+                                                                  13,
+                                                                  height:
+                                                                  10,
+                                                                  color:
+                                                                  Constants
+                                                                      .colorBlack,
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                          child: Center(
+                                                          margin: EdgeInsets.only(
+                                                              top: ScreenUtil()
+                                                                  .setHeight(5)),
+                                                        ),
+                                                      )
+                                                          : Container(),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: ScreenUtil()
+                                                            .setWidth(15)),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                      CrossAxisAlignment
+                                                          .end,
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              if (cartMenuItem[
+                                                              position]
+                                                                  .count >
+                                                                  1) {
+                                                                cartMenuItem[
+                                                                position]
+                                                                    .count--;
+                                                                model
+                                                                    .updateProduct(
+                                                                    cartMenuItem[
+                                                                    position]
+                                                                        .id,
+                                                                    cartMenuItem[
+                                                                    position]
+                                                                        .count);
+                                                                String?
+                                                                customization,
+                                                                    currentPriceWithoutCustomization;
+                                                                for (int z = 0;
+                                                                z <
+                                                                    model
+                                                                        .cart
+                                                                        .length;
+                                                                z++) {
+                                                                  if (cartMenuItem[
+                                                                  position]
+                                                                      .id ==
+                                                                      model
+                                                                          .cart[
+                                                                      z]
+                                                                          .id) {
+                                                                    customization =
+                                                                        model
+                                                                            .cart[z]
+                                                                            .foodCustomization;
+                                                                  }
+                                                                }
+
+                                                                for (int q = 0;
+                                                                q <
+                                                                    _listRestaurantsMenu
+                                                                        .length;
+                                                                q++) {
+                                                                  for (int w =
+                                                                  0;
+                                                                  w <
+                                                                      _listRestaurantsMenu[q]
+                                                                          .submenu!
+                                                                          .length;
+                                                                  w++) {
+                                                                    if (cartMenuItem[position]
+                                                                        .id ==
+                                                                        _listRestaurantsMenu[q]
+                                                                            .submenu![w]
+                                                                            .id) {
+                                                                      currentPriceWithoutCustomization =
+                                                                          '${_listRestaurantsMenu[
+                                                                          q]
+                                                                              .submenu![
+                                                                          w]
+                                                                              .price}';
+                                                                    }
+                                                                  }
+                                                                }
+                                                                print(
+                                                                    currentPriceWithoutCustomization);
+
+                                                                if (cartMenuItem[
+                                                                position]
+                                                                    .custimization!
+                                                                    .length >
+                                                                    0) {
+                                                                  int isRepeatCustomization =
+                                                                  cartMenuItem[position]
+                                                                      .isRepeatCustomization!
+                                                                      ? 1
+                                                                      : 0;
+                                                                  _updateForCustomizedFood(
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .id,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .count,
+                                                                      double
+                                                                          .parse(
+                                                                          cartMenuItem[
+                                                                          position]
+                                                                              .price
+                                                                              .toString()),
+                                                                      currentPriceWithoutCustomization,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .image,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .name,
+                                                                      restId,
+                                                                      restName,
+                                                                      customization,
+                                                                      isRepeatCustomization,
+                                                                      1,
+                                                                      "decrement");
+                                                                } else {
+                                                                  _update(
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .id,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .count,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .price
+                                                                          .toString(),
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .image,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .name,
+                                                                      restId,
+                                                                      restName,
+                                                                      "decrement");
+                                                                }
+                                                              } else {
+                                                                cartMenuItem[
+                                                                position]
+                                                                    .isAdded =
+                                                                false;
+                                                                cartMenuItem[
+                                                                position]
+                                                                    .count = 0;
+                                                                model
+                                                                    .updateProduct(
+                                                                    cartMenuItem[
+                                                                    position]
+                                                                        .id,
+                                                                    cartMenuItem[
+                                                                    position]
+                                                                        .count);
+
+                                                                String?
+                                                                customization,
+                                                                    currentPriceWithoutCustomization;
+                                                                for (int z = 0;
+                                                                z <
+                                                                    model
+                                                                        .cart
+                                                                        .length;
+                                                                z++) {
+                                                                  if (cartMenuItem[
+                                                                  position]
+                                                                      .id ==
+                                                                      model
+                                                                          .cart[
+                                                                      z]
+                                                                          .id) {
+                                                                    customization =
+                                                                        model
+                                                                            .cart[z]
+                                                                            .foodCustomization;
+                                                                  }
+                                                                }
+
+                                                                for (int q = 0;
+                                                                q <
+                                                                    _listRestaurantsMenu
+                                                                        .length;
+                                                                q++) {
+                                                                  for (int w =
+                                                                  0;
+                                                                  w <
+                                                                      _listRestaurantsMenu[q]
+                                                                          .submenu!
+                                                                          .length;
+                                                                  w++) {
+                                                                    if (cartMenuItem[position]
+                                                                        .id ==
+                                                                        _listRestaurantsMenu[q]
+                                                                            .submenu![w]
+                                                                            .id) {
+                                                                      currentPriceWithoutCustomization =
+                                                                          '${_listRestaurantsMenu[
+                                                                          q]
+                                                                              .submenu![
+                                                                          w]
+                                                                              .price}';
+                                                                    }
+                                                                  }
+                                                                }
+                                                                print(
+                                                                    currentPriceWithoutCustomization);
+
+                                                                if (cartMenuItem[
+                                                                position]
+                                                                    .custimization!
+                                                                    .length >
+                                                                    0) {
+                                                                  int isRepeatCustomization =
+                                                                  cartMenuItem[position]
+                                                                      .isRepeatCustomization!
+                                                                      ? 1
+                                                                      : 0;
+                                                                  _updateForCustomizedFood(
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .id,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .count,
+                                                                      double
+                                                                          .parse(
+                                                                          cartMenuItem[
+                                                                          position]
+                                                                              .price
+                                                                              .toString()),
+                                                                      currentPriceWithoutCustomization,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .image,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .name,
+                                                                      restId,
+                                                                      restName,
+                                                                      customization,
+                                                                      isRepeatCustomization,
+                                                                      1,
+                                                                      "decrement");
+                                                                } else {
+                                                                  _update(
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .id,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .count,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .price
+                                                                          .toString(),
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .image,
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .name,
+                                                                      restId,
+                                                                      restName,
+                                                                      "decrement");
+                                                                }
+                                                              }
+                                                            });
+                                                          },
+                                                          child: Container(
+                                                            height: ScreenUtil()
+                                                                .setHeight(21),
+                                                            width: ScreenUtil()
+                                                                .setWidth(36),
+                                                            decoration:
+                                                            BoxDecoration(
+                                                              borderRadius: BorderRadius
+                                                                  .only(
+                                                                  topLeft: Radius
+                                                                      .circular(
+                                                                      10),
+                                                                  topRight: Radius
+                                                                      .circular(
+                                                                      10)),
+                                                              color: Color(
+                                                                  0xfff1f1f1),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                '-',
+                                                                style: TextStyle(
+                                                                    color: Constants
+                                                                        .colorTheme),
+                                                                textAlign:
+                                                                TextAlign
+                                                                    .center,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets
+                                                              .only(
+                                                              top: ScreenUtil()
+                                                                  .setHeight(5),
+                                                              bottom:
+                                                              ScreenUtil()
+                                                                  .setHeight(
+                                                                  5)),
+                                                          child: Container(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            height: ScreenUtil()
+                                                                .setHeight(21),
+                                                            width: ScreenUtil()
+                                                                .setWidth(36),
                                                             child: Text(
-                                                              '+',
+                                                              cartMenuItem[
+                                                              position]
+                                                                  .count
+                                                                  .toString(),
                                                               style: TextStyle(
-                                                                  color: Constants
-                                                                      .colorTheme),
+                                                                  fontFamily:
+                                                                  Constants
+                                                                      .appFont),
                                                               textAlign:
                                                               TextAlign
                                                                   .center,
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                )),
-                                          ],
+                                                        //increment section
+                                                        GestureDetector(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              cartMenuItem[
+                                                              position]
+                                                                  .count++;
+                                                            });
+                                                            model.updateProduct(
+                                                                cartMenuItem[
+                                                                position]
+                                                                    .id,
+                                                                cartMenuItem[
+                                                                position]
+                                                                    .count);
+                                                            if (cartMenuItem[
+                                                            position]
+                                                                .custimization!
+                                                                .length >
+                                                                0) {
+                                                              int isRepeatCustomization =
+                                                              cartMenuItem[
+                                                              position]
+                                                                  .isRepeatCustomization!
+                                                                  ? 1
+                                                                  : 0;
+                                                              String?
+                                                              customization,
+                                                                  currentPriceWithoutCustomization;
+                                                              for (int z = 0;
+                                                              z <
+                                                                  model.cart
+                                                                      .length;
+                                                              z++) {
+                                                                if (cartMenuItem[
+                                                                position]
+                                                                    .id ==
+                                                                    model
+                                                                        .cart[z]
+                                                                        .id) {
+                                                                  customization =
+                                                                      model
+                                                                          .cart[
+                                                                      z]
+                                                                          .foodCustomization;
+                                                                }
+                                                              }
+                                                              for (int q = 0;
+                                                              q <
+                                                                  _listRestaurantsMenu
+                                                                      .length;
+                                                              q++) {
+                                                                for (int w = 0;
+                                                                w <
+                                                                    _listRestaurantsMenu[q]
+                                                                        .submenu!
+                                                                        .length;
+                                                                w++) {
+                                                                  if (cartMenuItem[
+                                                                  position]
+                                                                      .id ==
+                                                                      _listRestaurantsMenu[
+                                                                      q]
+                                                                          .submenu![
+                                                                      w]
+                                                                          .id) {
+                                                                    currentPriceWithoutCustomization =
+                                                                        '${_listRestaurantsMenu[
+                                                                        q]
+                                                                            .submenu![
+                                                                        w]
+                                                                            .price}';
+                                                                  }
+                                                                }
+                                                              }
+                                                              print(
+                                                                  currentPriceWithoutCustomization);
+                                                              _updateForCustomizedFood(
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .id,
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .count,
+                                                                  double.parse(
+                                                                      cartMenuItem[
+                                                                      position]
+                                                                          .price
+                                                                          .toString()),
+                                                                  currentPriceWithoutCustomization,
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .image,
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .name,
+                                                                  restId,
+                                                                  restName,
+                                                                  customization,
+                                                                  isRepeatCustomization,
+                                                                  1,
+                                                                  "increment");
+                                                            } else {
+                                                              _update(
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .id,
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .count,
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .price
+                                                                      .toString(),
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .image,
+                                                                  cartMenuItem[
+                                                                  position]
+                                                                      .name,
+                                                                  restId,
+                                                                  restName,
+                                                                  "increment");
+                                                            }
+                                                            incrementTax();
+                                                          },
+                                                          child: Container(
+                                                            height: ScreenUtil()
+                                                                .setHeight(21),
+                                                            width: ScreenUtil()
+                                                                .setWidth(36),
+                                                            decoration:
+                                                            BoxDecoration(
+                                                              borderRadius: BorderRadius
+                                                                  .only(
+                                                                  bottomLeft: Radius
+                                                                      .circular(
+                                                                      10),
+                                                                  bottomRight: Radius
+                                                                      .circular(
+                                                                      10)),
+                                                              color: Color(
+                                                                  0xfff1f1f1),
+                                                            ),
+                                                            child: Center(
+                                                              child: Text(
+                                                                '+',
+                                                                style: TextStyle(
+                                                                    color: Constants
+                                                                        .colorTheme),
+                                                                textAlign:
+                                                                TextAlign
+                                                                    .center,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     );
@@ -2674,7 +2685,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                             right: ScreenUtil()
                                                 .setWidth(10)),
                                         child: Text(
-                                              AppUtils.formatMoney(subTotal.toInt())+ " ${SharedPreferenceUtil.getString(
+                                              AppUtils.formatMoney(subTotal.toInt())+ "${SharedPreferenceUtil.getString(
                                                   Constants
                                                       .appSettingCurrencySymbol)}",
                                           style: TextStyle(
@@ -2852,7 +2863,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     return "+ ${AppUtils.formatMoney(
                                                         double.parse(
                                                             strFinalDeliveryCharge!)
-                                                            .round())} ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}";
+                                                            .round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}";
                                                   } else {
                                                     return "0";
                                             }
@@ -2908,9 +2919,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                       .appSettingCurrencySymbol)}";
                                                 } else {
                                                   return "+ ${double.parse(
-                                                      strTaxAmount!)
-                                                      .toStringAsFixed(
-                                                      2)}${SharedPreferenceUtil
+                                                      strTaxAmount!).toInt()}${SharedPreferenceUtil
                                                       .getString(Constants
                                                       .appSettingCurrencySymbol)}";
                                                 }

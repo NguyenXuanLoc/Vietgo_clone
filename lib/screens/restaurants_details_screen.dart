@@ -113,7 +113,7 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                     child: Text(
                       '${Languages.of(context)!.labelTotalItem} $totalQty' +
                           " : " +
-                          AppUtils.formatMoney(totalCartAmount.round())+" ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}",
+                          AppUtils.formatMoney(totalCartAmount.round())+"${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}",
                       style: TextStyle(
                         color: Constants.colorWhite,
                         fontFamily: Constants.appFont,
@@ -1902,7 +1902,7 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                   child: Text(
                                     '${Languages.of(context)!.labelItem} ${totalQty + 1}' +
                                         '  |  '
-                                            '${AppUtils.formatMoney((currentFoodItemPrice + tempPrice).round())} ${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}',
+                                            '${AppUtils.formatMoney((currentFoodItemPrice + tempPrice).round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}',
                                     style: TextStyle(
                                         fontFamily: Constants.appFont,
                                         color: Constants.colorWhite,
