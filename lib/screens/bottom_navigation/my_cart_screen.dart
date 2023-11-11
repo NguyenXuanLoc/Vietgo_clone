@@ -1402,7 +1402,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 return ScopedModelDescendant<CartModel>(
                                   builder: (context, child, model) {
                                     return Container(
-                                      height: ScreenUtil().setHeight(85),
+                                      height: ScreenUtil().setHeight(95),
                                       child: Padding(
                                         padding: EdgeInsets.only(
                                             left:
@@ -1549,11 +1549,14 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                     left: ScreenUtil()
                                                         .setWidth(10)),
                                                 child: Container(
+                                                  alignment: Alignment.centerLeft,
                                                   width: ScreenUtil()
                                                       .setWidth(180),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
                                                         .start,
                                                     crossAxisAlignment:
                                                     CrossAxisAlignment
@@ -2620,14 +2623,15 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       MainAxisAlignment
                                           .spaceBetween,
                                       children: [
-                                        Text(
+                                        Expanded(child: Text(
                                           Languages.of(context)!
                                               .labelYouHaveCoupon,
                                           style: TextStyle(
                                               fontFamily:
                                               Constants.appFont,
                                               fontSize: 16),
-                                        ),
+                                        )),
+                                        SizedBox(width: 10),
                                         Text(
                                           Languages.of(context)!
                                               .labelApplyIt,
@@ -4273,8 +4277,8 @@ class _MyCartScreenState extends State<MyCartScreen> {
 
     var parts = apiData.split(' - ');
 
-    DateTime startDate = DateTime.parse(parts[0]);
-    DateTime endDate = DateTime.parse(parts[1]);
+    DateTime startDate = DateFormat('yyyy-MM-dd').parse(parts.first);
+    DateTime endDate = DateFormat('yyyy-MM-dd').parse(parts.last);
 
     DateTime now = DateTime.now();
 

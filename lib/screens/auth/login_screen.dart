@@ -437,15 +437,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
           SharedPreferenceUtil.putBool(Constants.isLoggedIn, true);
 
-          String languageCode = '';
+        /*  String languageCode = '';
           if (response.data!.language == 'english') {
             languageCode = 'en';
           }
           else {
             languageCode = 'en';
-          }
-
           changeLanguage(context, languageCode);
+          }*/
+
 
           Navigator.of(context).pushReplacement(
             Transitions(
