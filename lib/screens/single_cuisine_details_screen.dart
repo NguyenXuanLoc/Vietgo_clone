@@ -122,191 +122,201 @@ class _SingleCuisineDetailsScreenState extends State<SingleCuisineDetailsScreen>
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(15.0),
-                              child: CachedNetworkImage(
-                                height: ScreenUtil().setHeight(100),
-                                width: ScreenUtil().setWidth(100),
-                                imageUrl: _listCuisineVendorRestaurants[index].image!,
-                                fit: BoxFit.fill,
-                                placeholder: (context, url) =>
-                                    SpinKitFadingCircle(color: Constants.colorTheme),
-                                errorWidget: (context, url, error) => Container(
-                                  child: Center(child: Image.asset('images/noimage.png')),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 5,
-                              child: Container(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              left: 10,
-                                              right: 10,
-                                            ),
-                                            child: Text(
-                                                _listCuisineVendorRestaurants[
-                                                        index]
-                                                    .name!,
-                                                style: TextStyle(
-                                                    fontFamily:
-                                                        Constants.appFontBold,
-                                                    fontSize: ScreenUtil()
-                                                        .setSp(16.0)),
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1),
-                                          ),
+                        child: IntrinsicHeight(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              AspectRatio(
+                                  aspectRatio: 1 / 1,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(15.0),
+                                    child: CachedNetworkImage(
+                                      height: ScreenUtil().setHeight(100),
+                                      width: ScreenUtil().setWidth(100),
+                                      imageUrl:
+                                          _listCuisineVendorRestaurants[index]
+                                              .image!,
+                                      fit: BoxFit.fill,
+                                      placeholder: (context, url) =>
+                                          SpinKitFadingCircle(
+                                              color: Constants.colorTheme),
+                                      errorWidget: (context, url, error) =>
                                           Container(
-                                            alignment: Alignment.topLeft,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10),
-                                              child: Text(
-                                                getExploreRestaurantsFood(
-                                                    index),
-                                                style: TextStyle(
-                                                    fontFamily:
-                                                        Constants.appFont,
-                                                    color: Constants.colorGray,
-                                                    fontSize: ScreenUtil()
-                                                        .setSp(12.0)),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        child: Center(
+                                            child: Image.asset(
+                                                'images/noimage.png')),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: ScreenUtil().setHeight(10)),
-                                      child: Container(
-                                        alignment: Alignment.topLeft,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 10),
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Container(
-                                                    child: Row(
-                                                      children: [
-                                                        RatingBar.builder(
-                                                          initialRating:
-                                                              _listCuisineVendorRestaurants[index]
-                                                                  .rate
-                                                                  .toDouble(),
-                                                          minRating: 1,
-                                                          ignoreGestures: true,
-                                                          direction: Axis.horizontal,
-                                                          itemSize: ScreenUtil().setWidth(12),
-                                                          allowHalfRating: true,
-                                                          itemBuilder: (context, _) => Icon(
-                                                            Icons.star,
-                                                            color: Colors.amber,
+                                  )),
+                              Expanded(
+                                flex: 5,
+                                child: Container(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Container(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                left: 10,
+                                                right: 10,
+                                              ),
+                                              child: Text(
+                                                  _listCuisineVendorRestaurants[
+                                                          index]
+                                                      .name!,
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          Constants.appFontBold,
+                                                      fontSize: ScreenUtil()
+                                                          .setSp(16.0)),
+                                                  overflow: TextOverflow.ellipsis,
+                                                  maxLines: 1),
+                                            ),
+                                            Container(
+                                              alignment: Alignment.topLeft,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10),
+                                                child: Text(
+                                                  getExploreRestaurantsFood(
+                                                      index),
+                                                  style: TextStyle(
+                                                      fontFamily:
+                                                          Constants.appFont,
+                                                      color: Constants.colorGray,
+                                                      fontSize: ScreenUtil()
+                                                          .setSp(12.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: ScreenUtil().setHeight(0)),
+                                        child: Container(
+                                          alignment: Alignment.topLeft,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(left: 10),
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Container(
+                                                      child: Row(
+                                                        children: [
+                                                          RatingBar.builder(
+                                                            initialRating:
+                                                                _listCuisineVendorRestaurants[index]
+                                                                    .rate
+                                                                    .toDouble(),
+                                                            minRating: 1,
+                                                            ignoreGestures: true,
+                                                            direction: Axis.horizontal,
+                                                            itemSize: ScreenUtil().setWidth(12),
+                                                            allowHalfRating: true,
+                                                            itemBuilder: (context, _) => Icon(
+                                                              Icons.star,
+                                                              color: Colors.amber,
+                                                            ),
+                                                            onRatingUpdate: (double rating) {
+                                                              print(rating);
+                                                            },
                                                           ),
-                                                          onRatingUpdate: (double rating) {
-                                                            print(rating);
-                                                          },
-                                                        ),
-                                                        Text(
-                                                          '(${_listCuisineVendorRestaurants[index].review})',
-                                                          style: TextStyle(
-                                                            fontSize: ScreenUtil().setSp(12.0),
-                                                            fontFamily: Constants.appFont,
-                                                            color: Color(0xFF132229),
+                                                          Text(
+                                                            '(${_listCuisineVendorRestaurants[index].review})',
+                                                            style: TextStyle(
+                                                              fontSize: ScreenUtil().setSp(12.0),
+                                                              fontFamily: Constants.appFont,
+                                                              color: Color(0xFF132229),
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ],
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        right: ScreenUtil().setWidth(10)),
-                                                    child: (() {
-                                                      if (_listCuisineVendorRestaurants[index]
-                                                              .vendorType ==
-                                                          'veg') {
-                                                        return Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets.only(right: 2),
-                                                              child: SvgPicture.asset(
-                                                                'images/ic_veg.svg',
-                                                                height:
-                                                                    ScreenUtil().setHeight(10.0),
-                                                                width: ScreenUtil().setHeight(10.0),
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          right: ScreenUtil().setWidth(10)),
+                                                      child: (() {
+                                                        if (_listCuisineVendorRestaurants[index]
+                                                                .vendorType ==
+                                                            'veg') {
+                                                          return Row(
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets.only(right: 2),
+                                                                child: SvgPicture.asset(
+                                                                  'images/ic_veg.svg',
+                                                                  height:
+                                                                      ScreenUtil().setHeight(10.0),
+                                                                  width: ScreenUtil().setHeight(10.0),
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      } else if (_listCuisineVendorRestaurants[
-                                                                  index]
-                                                              .vendorType ==
-                                                          'non_veg') {
-                                                        return Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  const EdgeInsets.only(right: 2),
-                                                              child: SvgPicture.asset(
+                                                            ],
+                                                          );
+                                                        } else if (_listCuisineVendorRestaurants[
+                                                                    index]
+                                                                .vendorType ==
+                                                            'non_veg') {
+                                                          return Row(
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsets.only(right: 2),
+                                                                child: SvgPicture.asset(
+                                                                  'images/ic_non_veg.svg',
+                                                                  height:
+                                                                      ScreenUtil().setHeight(10.0),
+                                                                  width: ScreenUtil().setHeight(10.0),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        } else if (_listCuisineVendorRestaurants[
+                                                                    index]
+                                                                .vendorType ==
+                                                            'all') {
+                                                          return Row(
+                                                            children: [
+                                                              Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    right: ScreenUtil().setWidth(5)),
+                                                                child: SvgPicture.asset(
+                                                                  'images/ic_veg.svg',
+                                                                  height:
+                                                                      ScreenUtil().setHeight(10.0),
+                                                                  width: ScreenUtil().setHeight(10.0),
+                                                                ),
+                                                              ),
+                                                              SvgPicture.asset(
                                                                 'images/ic_non_veg.svg',
-                                                                height:
-                                                                    ScreenUtil().setHeight(10.0),
+                                                                height: ScreenUtil().setHeight(10.0),
                                                                 width: ScreenUtil().setHeight(10.0),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        );
-                                                      } else if (_listCuisineVendorRestaurants[
-                                                                  index]
-                                                              .vendorType ==
-                                                          'all') {
-                                                        return Row(
-                                                          children: [
-                                                            Padding(
-                                                              padding: EdgeInsets.only(
-                                                                  right: ScreenUtil().setWidth(5)),
-                                                              child: SvgPicture.asset(
-                                                                'images/ic_veg.svg',
-                                                                height:
-                                                                    ScreenUtil().setHeight(10.0),
-                                                                width: ScreenUtil().setHeight(10.0),
-                                                              ),
-                                                            ),
-                                                            SvgPicture.asset(
-                                                              'images/ic_non_veg.svg',
-                                                              height: ScreenUtil().setHeight(10.0),
-                                                              width: ScreenUtil().setHeight(10.0),
-                                                            )
-                                                          ],
-                                                        );
-                                                      }
-                                                    }()),
-                                                  )
-                                                ],
-                                              )
-                                            ],
+                                                              )
+                                                            ],
+                                                          );
+                                                        }
+                                                      }()),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )
-                          ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
