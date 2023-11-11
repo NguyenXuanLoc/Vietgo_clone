@@ -4,7 +4,7 @@ import 'package:mealup/utils/constants.dart';
 import 'package:mealup/utils/localization/language/languages.dart';
 
 // ignore: must_be_immutable
-class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final Function? onOfferTap,onSearchTap,onLocationTap,onFilterTap;
   bool? isFilter = false;
 

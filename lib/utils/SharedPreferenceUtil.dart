@@ -80,6 +80,7 @@ class SharedPreferenceUtil {
   // get string
   static String getString(String key, {String defValue = ''}) {
     if (_prefs == null) return defValue;
+    var test =_prefs!.getString(key) ?? defValue;
     return _prefs!.getString(key) ?? defValue;
   }
 
