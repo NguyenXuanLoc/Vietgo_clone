@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-class ApplicationToolbarWithClrBtn extends StatelessWidget with PreferredSizeWidget {
+class ApplicationToolbarWithClrBtn extends StatelessWidget implements PreferredSizeWidget {
   ApplicationToolbarWithClrBtn({required this.appbarTitle,required this.strButtonTitle,required this.btnColor,required this.onBtnPress});
 
   final String appbarTitle,strButtonTitle;

@@ -81,7 +81,6 @@ class SharedPreferenceUtil {
   static String getString(String key, {String defValue = ''}) {
     if (_prefs == null) return defValue;
     var test =_prefs!.getString(key) ?? defValue;
-    print("TAG TEST: $test");
     return _prefs!.getString(key) ?? defValue;
   }
 

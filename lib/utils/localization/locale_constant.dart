@@ -15,6 +15,7 @@ Future<Locale> setLocale(String languageCode) async {
 Future<Locale> getLocale() async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
   String languageCode = _prefs.getString(prefSelectedLanguageCode) ?? "vi";
+  print("TAG languageCode: $languageCode");
   return _locale(languageCode);
 }
 

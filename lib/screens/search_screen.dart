@@ -341,8 +341,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         scrollDirection: Axis.horizontal,
                                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          mainAxisExtent: ScreenUtil().screenWidth /
-                                              1.1, // <== change the height to fit your needs
+                                          mainAxisExtent: ScreenUtil().screenWidth -10, // <== change the height to fit your needs
                                         ),
                                         itemCount: vendorList.length,
                                         itemBuilder: (context, index) {
@@ -369,73 +368,94 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(20.0),
                                                   ),
-                                                  child: Row(
-                                                    mainAxisSize: MainAxisSize.max,
-                                                    children: [
-                                                      ClipRRect(
-                                                        borderRadius: BorderRadius.circular(15.0),
-                                                        child: CachedNetworkImage(
-                                                          height: 100,
-                                                          width: 100,
-                                                          imageUrl: vendorList[index].image!,
-                                                          fit: BoxFit.fill,
-                                                          placeholder: (context, url) =>
-                                                              SpinKitFadingCircle(
-                                                                  color:
-                                                                      Constants.colorTheme),
-                                                          errorWidget: (context, url, error) =>
-                                                              Container(
-                                                            child: Center(
-                                                                child: Image.asset(
-                                                                    'images/noimage.png')),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        width: ScreenUtil().screenWidth / 1.7,
-                                                        child: Column(
+                                                  child: IntrinsicHeight(
+                                                    child: Row(
+                                                      mainAxisSize: MainAxisSize.max,
+                                                      children: [
+                                                        AspectRatio(
+                                                            aspectRatio: 1 / 1,
+                                                            child: ClipRRect(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          15.0),
+                                                              child:
+                                                                  CachedNetworkImage(
+                                                                height: 100,
+                                                                width: 100,
+                                                                imageUrl:
+                                                                    vendorList[
+                                                                            index]
+                                                                        .image!,
+                                                                fit:
+                                                                    BoxFit.fill,
+                                                                placeholder: (context,
+                                                                        url) =>
+                                                                    SpinKitFadingCircle(
+                                                                        color: Constants
+                                                                            .colorTheme),
+                                                                errorWidget: (context,
+                                                                        url,
+                                                                        error) =>
+                                                                    Container(
+                                                                  child: Center(
+                                                                      child: Image
+                                                                          .asset(
+                                                                              'images/noimage.png')),
+                                                                ),
+                                                              ),
+                                                            )),
+                                                        Expanded(
+                                                            child: Column(
                                                           mainAxisAlignment:
-                                                              MainAxisAlignment.spaceEvenly,
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
                                                           children: [
                                                             Container(
                                                               child: Column(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
                                                                 children: [
                                                                   Padding(
-                                                                    padding: const EdgeInsets.only(
-                                                                      left: 10,
-                                                                      right: 10,
-                                                                    ),
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceBetween,
-                                                                      children: [
-                                                                        Text(
-                                                                          vendorList[index].name!,
-                                                                          style: TextStyle(
-                                                                              fontFamily: Constants
-                                                                                  .appFontBold,
-                                                                              fontSize: ScreenUtil()
-                                                                                  .setSp(16.0)),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                  Container(
-                                                                    alignment: Alignment.topLeft,
-                                                                    child: Padding(
                                                                       padding:
-                                                                          const EdgeInsets.only(
-                                                                              left: 10),
-                                                                      child: Text(
-                                                                        getRestaurantsFood(index),
+                                                                          const EdgeInsets
+                                                                              .only(
+                                                                        left:
+                                                                            10,
+                                                                        right:
+                                                                            10,
+                                                                      ),
+                                                                      child:
+                                                                          Text(
+                                                                        vendorList[index]
+                                                                            .name!,
+                                                                        maxLines:
+                                                                            1,
+                                                                        style: TextStyle(
+                                                                            fontFamily:
+                                                                                Constants.appFontBold,
+                                                                            fontSize: ScreenUtil().setSp(16.0)),
+                                                                      )),
+                                                                  Container(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .topLeft,
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: const EdgeInsets
+                                                                          .only(
+                                                                          left:
+                                                                              10),
+                                                                      child:
+                                                                          Text(
+                                                                        getRestaurantsFood(
+                                                                            index),
                                                                         style: TextStyle(
                                                                             fontFamily:
                                                                                 Constants.appFont,
-                                                                            color: Constants
-                                                                                .colorGray,
-                                                                            fontSize: ScreenUtil()
-                                                                                .setSp(12.0)),
+                                                                            color: Constants.colorGray,
+                                                                            fontSize: ScreenUtil().setSp(12.0)),
                                                                       ),
                                                                     ),
                                                                   ),
@@ -443,33 +463,40 @@ class _SearchScreenState extends State<SearchScreen> {
                                                               ),
                                                             ),
                                                             Container(
-                                                              alignment: Alignment.topLeft,
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topLeft,
                                                               child: Padding(
                                                                 padding:
-                                                                    const EdgeInsets.only(left: 10),
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10),
                                                                 child: Row(
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .spaceBetween,
                                                                   children: [
                                                                     Container(
-                                                                      child: Row(
+                                                                      child:
+                                                                          Row(
                                                                         children: [
-                                                                          RatingBar.builder(
+                                                                          RatingBar
+                                                                              .builder(
                                                                             initialRating:
-                                                                                vendorList[index]
-                                                                                    .rate
-                                                                                    .toDouble(),
-                                                                            minRating: 1,
-                                                                            ignoreGestures: true,
+                                                                                vendorList[index].rate.toDouble(),
+                                                                            minRating:
+                                                                                1,
+                                                                            ignoreGestures:
+                                                                                true,
                                                                             direction:
                                                                                 Axis.horizontal,
-                                                                            itemSize: ScreenUtil()
-                                                                                .setWidth(12),
-                                                                            allowHalfRating: true,
-                                                                            itemBuilder:
-                                                                                (context, _) =>
-                                                                                    Icon(
+                                                                            itemSize:
+                                                                                ScreenUtil().setWidth(12),
+                                                                            allowHalfRating:
+                                                                                true,
+                                                                            itemBuilder: (context, _) =>
+                                                                                Icon(
                                                                               Icons.star,
                                                                               color: Constants.colorTheme,
                                                                             ),
@@ -480,44 +507,33 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                           ),
                                                                           Text(
                                                                             '(${vendorList[index].review})',
-                                                                            style: TextStyle(
-                                                                              fontSize: ScreenUtil()
-                                                                                  .setSp(12.0),
-                                                                              fontFamily:
-                                                                                  Constants.appFont,
-                                                                              color:
-                                                                                  Color(0xFF132229),
+                                                                            style:
+                                                                                TextStyle(
+                                                                              fontSize: ScreenUtil().setSp(12.0),
+                                                                              fontFamily: Constants.appFont,
+                                                                              color: Color(0xFF132229),
                                                                             ),
                                                                           ),
                                                                         ],
                                                                       ),
                                                                     ),
                                                                     Container(
-                                                                      child: Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(
-                                                                                right: 0),
-                                                                        child: vendorList[index]
-                                                                                    .vendorType ==
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: const EdgeInsets
+                                                                            .only(
+                                                                            right:
+                                                                                0),
+                                                                        child: vendorList[index].vendorType ==
                                                                                 'veg'
                                                                             ? Row(
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding:
-                                                                                        const EdgeInsets
-                                                                                                .only(
-                                                                                            right:
-                                                                                                2),
-                                                                                    child:
-                                                                                        SvgPicture
-                                                                                            .asset(
+                                                                                    padding: const EdgeInsets.only(right: 2),
+                                                                                    child: SvgPicture.asset(
                                                                                       'images/ic_veg.svg',
-                                                                                      height: ScreenUtil()
-                                                                                          .setHeight(
-                                                                                              10.0),
-                                                                                      width: ScreenUtil()
-                                                                                          .setHeight(
-                                                                                              10.0),
+                                                                                      height: ScreenUtil().setHeight(10.0),
+                                                                                      width: ScreenUtil().setHeight(10.0),
                                                                                     ),
                                                                                   ),
                                                                                 ],
@@ -525,31 +541,17 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                             : Row(
                                                                                 children: [
                                                                                   Padding(
-                                                                                    padding:
-                                                                                        const EdgeInsets
-                                                                                                .only(
-                                                                                            right:
-                                                                                                2),
-                                                                                    child:
-                                                                                        SvgPicture
-                                                                                            .asset(
+                                                                                    padding: const EdgeInsets.only(right: 2),
+                                                                                    child: SvgPicture.asset(
                                                                                       'images/ic_veg.svg',
-                                                                                      height: ScreenUtil()
-                                                                                          .setHeight(
-                                                                                              10.0),
-                                                                                      width: ScreenUtil()
-                                                                                          .setHeight(
-                                                                                              10.0),
+                                                                                      height: ScreenUtil().setHeight(10.0),
+                                                                                      width: ScreenUtil().setHeight(10.0),
                                                                                     ),
                                                                                   ),
                                                                                   SvgPicture.asset(
                                                                                     'images/ic_non_veg.svg',
-                                                                                    height: ScreenUtil()
-                                                                                        .setHeight(
-                                                                                            10.0),
-                                                                                    width: ScreenUtil()
-                                                                                        .setHeight(
-                                                                                            10.0),
+                                                                                    height: ScreenUtil().setHeight(10.0),
+                                                                                    width: ScreenUtil().setHeight(10.0),
                                                                                   )
                                                                                 ],
                                                                               ),
@@ -560,9 +562,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                                               ),
                                                             ),
                                                           ],
-                                                        ),
-                                                      )
-                                                    ],
+                                                        )),
+                                                        SizedBox(width: 10)
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
