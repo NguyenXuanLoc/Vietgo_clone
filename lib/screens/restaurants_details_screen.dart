@@ -657,7 +657,7 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
         child: Theme(
           data: theme,
           child: ExpansionTile(
-            initiallyExpanded: widget.index == selected,
+            initiallyExpanded: true/*widget.index == selected*/,
             onExpansionChanged: (value) {
               if (listItem.length == 0) {
                 Constants.toastMessage('No data.');
