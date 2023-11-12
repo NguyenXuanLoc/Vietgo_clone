@@ -45,7 +45,7 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - permission_handler_apple (9.1.0):
+  - permission_handler_apple (9.1.1):
     - Flutter
   - ReachabilitySwift (5.0.0)
   - share (0.0.1):
@@ -56,42 +56,42 @@ PODS:
   - sqflite (0.0.3):
     - Flutter
     - FMDB (>= 2.7.5)
-  - Stripe (23.7.1):
-    - StripeApplePay (= 23.7.1)
-    - StripeCore (= 23.7.1)
-    - StripePayments (= 23.7.1)
-    - StripePaymentsUI (= 23.7.1)
-    - StripeUICore (= 23.7.1)
+  - Stripe (23.16.0):
+    - StripeApplePay (= 23.16.0)
+    - StripeCore (= 23.16.0)
+    - StripePayments (= 23.16.0)
+    - StripePaymentsUI (= 23.16.0)
+    - StripeUICore (= 23.16.0)
   - stripe_ios (0.0.1):
     - Flutter
-    - Stripe (~> 23.7.0)
-    - StripeApplePay (~> 23.7.0)
-    - StripeFinancialConnections (~> 23.7.0)
-    - StripePayments (~> 23.7.0)
-    - StripePaymentSheet (~> 23.7.0)
-    - StripePaymentsUI (~> 23.7.0)
-  - StripeApplePay (23.7.1):
-    - StripeCore (= 23.7.1)
-  - StripeCore (23.7.1)
-  - StripeFinancialConnections (23.7.1):
-    - StripeCore (= 23.7.1)
-    - StripeUICore (= 23.7.1)
-  - StripePayments (23.7.1):
-    - StripeCore (= 23.7.1)
-    - StripePayments/Stripe3DS2 (= 23.7.1)
-  - StripePayments/Stripe3DS2 (23.7.1):
-    - StripeCore (= 23.7.1)
-  - StripePaymentSheet (23.7.1):
-    - StripeApplePay (= 23.7.1)
-    - StripeCore (= 23.7.1)
-    - StripePayments (= 23.7.1)
-    - StripePaymentsUI (= 23.7.1)
-  - StripePaymentsUI (23.7.1):
-    - StripeCore (= 23.7.1)
-    - StripePayments (= 23.7.1)
-    - StripeUICore (= 23.7.1)
-  - StripeUICore (23.7.1):
-    - StripeCore (= 23.7.1)
+    - Stripe (~> 23.16.0)
+    - StripeApplePay (~> 23.16.0)
+    - StripeFinancialConnections (~> 23.16.0)
+    - StripePayments (~> 23.16.0)
+    - StripePaymentSheet (~> 23.16.0)
+    - StripePaymentsUI (~> 23.16.0)
+  - StripeApplePay (23.16.0):
+    - StripeCore (= 23.16.0)
+  - StripeCore (23.16.0)
+  - StripeFinancialConnections (23.16.0):
+    - StripeCore (= 23.16.0)
+    - StripeUICore (= 23.16.0)
+  - StripePayments (23.16.0):
+    - StripeCore (= 23.16.0)
+    - StripePayments/Stripe3DS2 (= 23.16.0)
+  - StripePayments/Stripe3DS2 (23.16.0):
+    - StripeCore (= 23.16.0)
+  - StripePaymentSheet (23.16.0):
+    - StripeApplePay (= 23.16.0)
+    - StripeCore (= 23.16.0)
+    - StripePayments (= 23.16.0)
+    - StripePaymentsUI (= 23.16.0)
+  - StripePaymentsUI (23.16.0):
+    - StripeCore (= 23.16.0)
+    - StripePayments (= 23.16.0)
+    - StripeUICore (= 23.16.0)
+  - StripeUICore (23.16.0):
+    - StripeCore (= 23.16.0)
   - Toast (4.0.0)
   - url_launcher_ios (0.0.1):
     - Flutter
@@ -189,24 +189,24 @@ SPEC CHECKSUMS:
   modal_progress_hud_nsn: f6fb744cd060653d66ed8f325360ef3650eb2fde
   onesignal_flutter: b8ac01bc3ebe47e798d7d775455c3a9b5b84f1c5
   OneSignalXCFramework: 087934ab0d4d7445fcf1c015c7c782359e26c020
-  package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
-  path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
-  permission_handler_apple: 8f116445eff3c0e7c65ad60f5fef5490aa94b4e4
+  package_info_plus: 115f4ad11e0698c8c1c5d8a689390df880f47e85
+  path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
-  shared_preferences_foundation: e2dae3258e06f44cc55f49d42024fd8dd03c590c
+  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
-  Stripe: fbe3d1d61cba70ac7a920c6097222ba9525352c4
-  stripe_ios: 8e0be46c31e1758756e5fdc1613f751d4d945ae0
-  StripeApplePay: 06e3899c9db102567804b77c41cec2861b5e2c39
-  StripeCore: 9b331e5f9d4067ef7296718c680a73ad6f2d1066
-  StripeFinancialConnections: 7d8116c4dcd3b034f13a181b4d96e6991b594cfc
-  StripePayments: 46fbd561312cb300c93dd855b9c896285c8eb1fb
-  StripePaymentSheet: 016fd1c6053efff1f348fc6f44babecacda9d0af
-  StripePaymentsUI: cb06c01d3c9efde91ebce218f9e4e94e902dd676
-  StripeUICore: a9db3f2a82c932d5ca58dd8fc4ac0a6b72f1ccee
+  Stripe: fcab417424a45d995aa1e62a39bc942233b61ba3
+  stripe_ios: 2b444aaa35682eee30eac8733a9d502c1e925a4a
+  StripeApplePay: 81de266a964b3ad02fb25e8b22fd8c235d2916a8
+  StripeCore: ac141047bca25f5ae945a1cbdd00a90b0d08c616
+  StripeFinancialConnections: d7a452e4bed1195d8978ee4f6c0ba2f82c89fdf4
+  StripePayments: 5804cb9b02cca488042e5cf8cf57a86a5080006b
+  StripePaymentSheet: 06ea6bbf49be869769c46bf31be4fbc3e23b5b19
+  StripePaymentsUI: 24a0349ae8c7e8c7402086703720fe06c52ddea0
+  StripeUICore: ce85e040a22bf0335061d14973d37757528b3d2d
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
+  url_launcher_ios: 68d46cc9766d0c41dbdc884310529557e3cd7a86
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
 PODFILE CHECKSUM: 00bdcb43010e97b0f748b962b2b4d73fa2422588

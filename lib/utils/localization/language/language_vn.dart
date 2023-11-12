@@ -32,7 +32,7 @@ class LanguageVn extends Languages {
   @override
   String get labelLogout=>'Đăng xuất';
   @override
-  String get labelMealupAppVersion=>'Phiên bản ứng dụng';
+  String get labelMealupAppVersion=>'Phiên bản ứng dụng ';
   @override
   String get labelScreenIntro1Line1=>'Khám phá nhà hàng gần bạn';
   @override
@@ -160,11 +160,11 @@ class LanguageVn extends Languages {
   @override
   String get labelCustomizable=>'Có thể tùy chỉnh';
   @override
-  String get labelAddRequestToRest=>'Bạn có yêu cầu gì về món ăn ngon không?';
+  String get labelAddRequestToRest=>'Bạn có yêu cầu gì về món ăn không?';
   @override
   String get labelOptional=>'Không bắt buộc';
   @override
-  String get labelFoodOfferCoupons=>'Phiếu giảm giá ưu đãi thực phẩm';
+  String get labelFoodOfferCoupons=>'Phiếu giảm giá, ưu đãi';
   @override
   String get labelSearchRestOrCoupon=>'Tìm kiếm nhà hàng hoặc mã giảm giá...';
   @override
@@ -172,7 +172,7 @@ class LanguageVn extends Languages {
   @override
   String get labelApplyIt=>'Áp dụng nó';
   @override
-  String get labelSubtotal=>'Tổng phụ';
+  String get labelSubtotal=>'Tổng cộng ';
   @override
   String get labelAppliedCoupon=>'Phiếu giảm giá áp dụng';
   @override
@@ -184,7 +184,7 @@ class LanguageVn extends Languages {
   @override
   String get labelVendorDiscount=>'Giảm giá của nhà cung cấp';
   @override
-  String get labelGrandTotal=>'Tổng cộng';
+  String get labelGrandTotal=>'Tổng thanh toán';
   @override
   String get labelSetLocation=>'Thiết lập địa điểm';
   @override
@@ -208,7 +208,7 @@ class LanguageVn extends Languages {
   @override
   String get labelQuickFilters=>'Bộ lọc nhanh';
   @override
-  String get labelCousines=>'anh em họ';
+  String get labelCousines=>'Loại nhà hàng';
   @override
   String get labelAddNewAddress=>'Thêm địa chỉ mới';
   @override
@@ -274,7 +274,7 @@ class LanguageVn extends Languages {
   @override
   String get labelPleaseSelectPaymentMethod=>'Vui lòng chọn phương thức thanh toán.';
   @override
-  String get labelPlaceYourOrder=>'Đặt hàng của bạn';
+  String get labelPlaceYourOrder=>'Đặt hàng';
   @override
   String get labelClearList=>'Danh mục rõ ràng';
   @override
@@ -392,7 +392,7 @@ class LanguageVn extends Languages {
   @override
   String get labelPleaseLoginToAddFavorite=>'Vui lòng đăng nhập để thêm vào mục yêu thích';
   @override
-  String get labelKmFarAway=>'km xa';
+  String get labelKmFarAway=>'km';
   @override
   String get labelDeliveryUnavailable=>'Rất tiếc, hiện tại việc giao hàng không có sẵn ..!';
   @override
@@ -499,4 +499,9 @@ class LanguageVn extends Languages {
   String get noCustomizationAvailable=>'Không có sẵn dữ liệu tùy chỉnh.';
   @override
   String get outOfStock=>'Hết hàng';
+
+  @override
+  String get cod=>'Thanh toán khi nhận hàng';
+  @override
+  String get remove_discount=>'Khi sử dụng mã giảm giá của nhà hàng, bạn sẽ không sử dụng mã giảm giá của Viego được nữa';
 }

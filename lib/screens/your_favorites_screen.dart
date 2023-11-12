@@ -562,14 +562,20 @@ class _YourFavoritesScreenState extends State<YourFavoritesScreen> {
   }
 
   Future<BaseModel<FavoriteListModel>> callGetFavoritesList() async {
+    print("callGetFavoritesList");
     FavoriteListModel response;
     try{
       _listFavoriteData.clear();
       setState(() {
         _isSyncing = true;
       });
-      response  = await  RestClient(RetroApi().dioData()).restFavorite();
-      print(response.success);
+      Map<String, String> body = {
+        'lat': SharedPreferenceUtil.getString('selectedLat'),
+        'lang': SharedPreferenceUtil.getString('selectedLng'),
+
+      };
+      response  = await  RestClient(RetroApi().dioData()).restFavorite(body);
+      print("callGetFavoritesList response ${response.toJson()}" );
       setState(() {
         _isSyncing = false;
       });

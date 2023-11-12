@@ -3001,7 +3001,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                       Container(
                                         width: ScreenUtil().setWidth(180),
                                         child: Text(
-                                          'If you apply coupon, the vendor discount will be removed.',
+                                          Languages.of(context)!.remove_discount,
                                           style: TextStyle(
                                               fontFamily:
                                               Constants

@@ -759,4 +759,9 @@ class LanguageSpanish extends Languages {
   @override
   String get outOfStock => 'Agotado';
 
+  @override
+  String get cod=>'Cash on Delivery';
+
+  @override
+  String get remove_discount=>'If you apply coupon, the vendor discount will be removed.';
 }

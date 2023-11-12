@@ -183,11 +183,11 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
           });
         if (SharedPreferenceUtil.getString(Constants.appPaymentCOD) == '1') {
           listPayment.add(0);
-          listPaymentName.add('Cash on Delivery');
+          listPaymentName.add(Languages.of(context)!.cod);
           listPaymentImage.add('images/cod.svg');
         } else {
           listPayment.remove(0);
-          listPaymentName.remove('Cash on Delivery');
+          listPaymentName.remove(Languages.of(context)!.cod);
           listPaymentImage.remove('images/code.svg');
         }
 

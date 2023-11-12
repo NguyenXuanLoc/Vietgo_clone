@@ -746,4 +746,10 @@ class LanguageEn extends Languages {
 
   @override
   String get outOfStock => 'Out Of Stock';
+
+  @override
+  String get cod=>'Cash on Delivery';
+
+  @override
+  String get remove_discount=>'If you apply coupon, the vendor discount will be removed.';
 }

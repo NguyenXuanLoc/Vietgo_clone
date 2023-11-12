@@ -161,7 +161,7 @@ abstract class RestClient {
   Future<SingleRestaurantsDetailsModel> singleVendor(@Path() int? id);
 
   @POST("rest_faviroute")
-  Future<FavoriteListModel> restFavorite();
+  Future<FavoriteListModel> restFavorite(@Body() Map<String, String> map);
 
   @GET("setting")
   Future<AppSettingModel> setting();

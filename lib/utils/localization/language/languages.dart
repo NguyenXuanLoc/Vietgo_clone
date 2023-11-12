@@ -329,4 +329,7 @@ abstract class Languages {
   String get labelValidUpTo;
 
   String get labelPleaseLoginToAddFavorite;
+
+  String get cod;
+  String get remove_discount;
 }
