@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -257,19 +258,52 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                                             top: ScreenUtil().setHeight(2),
                                             bottom: ScreenUtil().setHeight(2)),
                                         child: Text(
-                                          strRestaurantsAddress ?? 'Not available',
+                                          strRestaurantsAddress ??
+                                              'Not available',
                                           style: TextStyle(
                                               fontFamily: Constants.appFont,
                                               color: Constants.colorBlack,
                                               fontSize: ScreenUtil().setSp(12)),
                                         ),
                                       ),
-                                      Text(
-                                        '',
-                                        style: TextStyle(
-                                            fontFamily: Constants.appFont,
-                                            color: Constants.colorGray,
-                                            fontSize: ScreenUtil().setSp(12)),
+                                      RichText(
+                                        text: TextSpan(
+                                          children: [
+                                            WidgetSpan(
+                                                child: RatingBar.builder(
+                                              initialRating:
+                                                  strRestaurantsRate != null &&
+                                                          strRestaurantsRate!
+                                                              .isNotEmpty
+                                                      ? double.parse(
+                                                          strRestaurantsRate ??
+                                                              '0')
+                                                      : 0,
+                                              minRating: 1,
+                                              ignoreGestures: true,
+                                              direction: Axis.horizontal,
+                                              itemSize:
+                                                  ScreenUtil().setWidth(12),
+                                              allowHalfRating: true,
+                                              itemBuilder: (context, _) => Icon(
+                                                Icons.star,
+                                                color: Constants.colorTheme,
+                                              ),
+                                              onRatingUpdate: (double rating) {
+                                                print(rating);
+                                              },
+                                            )),
+                                            TextSpan(
+                                                text:
+                                                    '(${strRestaurantsReview}) $strRestaurantsRate+ ${Languages.of(context)!.labelRatings}',
+                                                style: TextStyle(
+                                                    fontFamily:
+                                                        Constants.appFont,
+                                                    color: Constants.colorBlack,
+                                                    fontSize: ScreenUtil()
+                                                        .setSp(12))),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -277,211 +311,6 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: ScreenUtil().setHeight(15),
-                        ),
-                        DottedLine(
-                          dashColor: Color(0xffcccccc),
-                        ),
-                        Container(
-                          height: 60,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: ScreenUtil().setHeight(10),
-                                          bottom: ScreenUtil().setHeight(5)),
-                                      child: RichText(
-                                        text: TextSpan(
-                                          children: [
-                                            WidgetSpan(
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: ScreenUtil().setWidth(5)),
-                                                child: SvgPicture.asset(
-                                                  'images/ic_star.svg',
-                                                  width: ScreenUtil().setWidth(15),
-                                                  height: ScreenUtil().setHeight(15),
-                                                ),
-                                              ),
-                                            ),
-                                            TextSpan(
-                                                text: strRestaurantsReview,
-                                                style: TextStyle(
-                                                    color: Constants.colorBlack,
-                                                    fontFamily: Constants.appFontBold,
-                                                    fontSize: ScreenUtil().setSp(14))),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      '$strRestaurantsRate+ ${Languages.of(context)!.labelRatings}',
-                                      style: TextStyle(
-                                          fontFamily: Constants.appFont,
-                                          color: Constants.colorGray,
-                                          fontSize: ScreenUtil().setSp(12)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              DottedLine(
-                                dashColor: Color(0xffcccccc),
-                                direction: Axis.vertical,
-                              ),
-                              Expanded(
-                                flex: 1,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          bottom: ScreenUtil().setHeight(5)),
-                                      child: Text(
-                                        SharedPreferenceUtil.getString(
-                                            Constants.appSettingCurrencySymbol),
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                            fontFamily: Constants.appFont,
-                                            color: Constants.colorTheme,
-                                            fontSize: ScreenUtil().setSp(18)),
-                                      ),
-                                    ),
-                                    Text(
-                                      Languages.of(context)!.labelFor2Persons,
-                                      style: TextStyle(
-                                          fontFamily: Constants.appFont,
-                                          color: Constants.colorGray,
-                                          fontSize: ScreenUtil().setSp(12)),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              DottedLine(
-                                dashColor: Color(0xffcccccc),
-                                direction: Axis.vertical,
-                              ),
-                              (() {
-                                if (strRestaurantsType == 'veg') {
-                                  return Expanded(
-                                    flex: 1,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: ScreenUtil().setHeight(10),
-                                              bottom: ScreenUtil().setHeight(5)),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.only(right: ScreenUtil().setWidth(5)),
-                                            child: SvgPicture.asset(
-                                              'images/ic_veg.svg',
-                                              width: ScreenUtil().setWidth(15),
-                                              height: ScreenUtil().setHeight(15),
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          'Veg.',
-                                          style: TextStyle(
-                                              fontFamily: Constants.appFont,
-                                              color: Constants.colorGray,
-                                              fontSize: ScreenUtil().setSp(12)),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                } else if (strRestaurantsType == 'non_veg') {
-                                  return Expanded(
-                                    flex: 1,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: ScreenUtil().setHeight(10),
-                                              bottom: ScreenUtil().setHeight(5)),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsets.only(right: ScreenUtil().setWidth(5)),
-                                            child: SvgPicture.asset(
-                                              'images/ic_non_veg.svg',
-                                              width: ScreenUtil().setWidth(15),
-                                              height: ScreenUtil().setHeight(15),
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          'Non Veg.',
-                                          style: TextStyle(
-                                              fontFamily: Constants.appFont,
-                                              color: Constants.colorGray,
-                                              fontSize: ScreenUtil().setSp(12)),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                } else if (strRestaurantsType == 'all') {
-                                  return Expanded(
-                                    flex: 1,
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: ScreenUtil().setHeight(10),
-                                              bottom: ScreenUtil().setHeight(5)),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    right: ScreenUtil().setWidth(5)),
-                                                child: SvgPicture.asset(
-                                                  'images/ic_veg.svg',
-                                                  width: ScreenUtil().setWidth(15),
-                                                  height: ScreenUtil().setHeight(15),
-                                                ),
-                                              ),
-                                              SvgPicture.asset(
-                                                'images/ic_non_veg.svg',
-                                                width: ScreenUtil().setWidth(15),
-                                                height: ScreenUtil().setHeight(15),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Text(
-                                          'Veg. & Non Veg.',
-                                          style: TextStyle(
-                                              fontFamily: Constants.appFont,
-                                              color: Constants.colorGray,
-                                              fontSize: ScreenUtil().setSp(12)),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                } else {
-                                  return Container();
-                                }
-                              }()),
-                            ],
-                          ),
-                        ),
-                        DottedLine(
-                          dashColor: Color(0xffcccccc),
                         ),
                       ],
                     ),
