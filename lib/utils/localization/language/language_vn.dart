@@ -208,7 +208,7 @@ class LanguageVn extends Languages {
   @override
   String get labelQuickFilters=>'Bộ lọc nhanh';
   @override
-  String get labelCousines=>'Loại nhà hàng';
+  String get labelCousines=>'Phân loại món';
   @override
   String get labelAddNewAddress=>'Thêm địa chỉ mới';
   @override
@@ -216,7 +216,7 @@ class LanguageVn extends Languages {
   @override
   String get labelPleaseAddAddress=>'Vui lòng thêm địa chỉ.';
   @override
-  String get labelEditAddress=>'sửa địa chỉ';
+  String get labelEditAddress=>'Sửa địa chỉ';
   @override
   String get labelRemoveThisAddress=>'Xóa địa chỉ này';
   @override
@@ -236,19 +236,19 @@ class LanguageVn extends Languages {
   @override
   String get labelTypeFullAddressHere=>'Nhập địa chỉ đầy đủ vào đây';
   @override
-  String get labelLandmark=>'Phong cảnh';
+  String get labelLandmark=>'Địa điểm gợi ý';
   @override
-  String get labelAnyLandmarkNearYourLocation=>'Bất kỳ địa danh nào gần vị trí của bạn';
+  String get labelAnyLandmarkNearYourLocation=>'Hãy điền bất kỳ địa danh nào gần vị trí của bạn';
   @override
   String get labelAttachLabel=>'Đính kèm nhãn';
   @override
   String get labelAddLabelForThisLocation=>'Thêm nhãn cho vị trí này';
   @override
-  String get labelPleaseSearchAddress=>'Vui lòng tìm kiếm địa chỉ của bạn để thêm địa chỉ của bạn.';
+  String get labelPleaseSearchAddress=>'Vui lòng nhập địa chỉ của bạn để tìm kiếm.';
   @override
   String get labelPleaseAddLabelForAddress=>'Vui lòng nhập nhãn cho địa chỉ.';
   @override
-  String get labelSaveIt=>'Lưu nó';
+  String get labelSaveIt=>'Lưu';
   @override
   String get labelUpdate=>'Cập nhật';
   @override
