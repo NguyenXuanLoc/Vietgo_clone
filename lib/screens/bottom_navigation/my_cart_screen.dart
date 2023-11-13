@@ -65,7 +65,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
   List<DeliveryTimeslot> _listDeliveryTimeSlot = [];
   List<PickUpTimeslot> _listPickupTimeSlot = [];
   List<CartTaxModalData> _listOtherTax = [];
-
+  VendorDiscount? vendorDiscountModel;
   int radioIndex = -1,
       deliveryTypeIndex = -1;
 
@@ -435,6 +435,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
           }
 
           if (response.data!.vendorDiscount != null) {
+            vendorDiscountModel = response.data!.vendorDiscount;
             vendorDiscountStartDtEndDt = response.data!.vendorDiscount!.startEndDate;
             vendorDiscount =double.parse(response.data!.vendorDiscount!.discount.toString());
             vendorDiscountID = response.data!.vendorDiscount!.id;
@@ -1498,32 +1499,39 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                                   top: ScreenUtil()
                                                                       .setHeight(
                                                                           5)),
-                                                              child: Text(
-                                                                AppUtils.formatMoney(
-                                                                        cartMenuItem[
-                                                                                position]
-                                                                            .price!
-                                                                            .toInt()) +""+
-                                                                    SharedPreferenceUtil
-                                                                        .getString(
-                                                                            Constants
-                                                                                .appSettingCurrencySymbol),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                style: TextStyle(
-                                                              fontFamily:
-                                                              Constants
-                                                                  .appFontBold,
-                                                              color: Constants
-                                                                  .colorBlack,
-                                                              fontSize:
-                                                              ScreenUtil()
-                                                                  .setSp(
-                                                                  14)),
-                                                        ),
-                                                      ),
-                                                      cartMenuItem[position]
+                                                              child: Row(
+                                                                  children: [
+                                                                    if (AppUtils.getDiscountPrice(
+                                                                            double.parse((cartMenuItem[position].price ?? '0')
+                                                                                .toString()),
+                                                                            vendorDiscountModel) !=
+                                                                        cartMenuItem[position]
+                                                                            .price)
+                                                                      Text(
+                                                                        "${cartMenuItem[position].price != null && cartMenuItem[position].price != '' ? AppUtils.formatMoney((cartMenuItem[position].price ?? 0).round()) : "0"}" +
+                                                                            SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol),
+                                                                        style: TextStyle(
+                                                                            decoration:
+                                                                                TextDecoration.lineThrough,
+                                                                            fontFamily: Constants.appFont,
+                                                                            color: Constants.colorGray,
+                                                                            fontSize: ScreenUtil().setSp(13)),
+                                                                      ),
+                                                                    Text(
+                                                                      "${cartMenuItem[position].price != null && cartMenuItem[position].price != '' ? AppUtils.formatMoney(AppUtils.getDiscountPrice(double.parse((cartMenuItem[position].price ?? '0').toString()), vendorDiscountModel).round()) : "0"}" +
+                                                                          SharedPreferenceUtil.getString(
+                                                                              Constants.appSettingCurrencySymbol),
+                                                                      style: TextStyle(
+                                                                          fontFamily: Constants
+                                                                              .appFont,
+                                                                          color: Constants
+                                                                              .colorBlack,
+                                                                          fontSize:
+                                                                              ScreenUtil().setSp(16)),
+                                                                    )
+                                                                  ]),
+                                                            ),
+                                                            cartMenuItem[position]
                                                           .custimization!
                                                           .length >
                                                           0
@@ -2604,7 +2612,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                             right: ScreenUtil()
                                                 .setWidth(10)),
                                         child: Text(
-                                              AppUtils.formatMoney(subTotal.toInt())+ "${SharedPreferenceUtil.getString(
+                                              AppUtils.formatMoney(AppUtils.getDiscountPrice(subTotal, vendorDiscountModel).round())+ "${SharedPreferenceUtil.getString(
                                                   Constants
                                                       .appSettingCurrencySymbol)}",
                                           style: TextStyle(
@@ -2967,15 +2975,16 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                               right: ScreenUtil()
                                                   .setWidth(10)),
                                           child: Text(
-                                                () {
+                                                () { //Todo
                                               if (isSetStateAvailable ==
                                                   true) {
                                                 if (addGlobalTax == 0.0 &&
                                                     strTaxAmount != '') {
                                                   totalPrice +=
-                                                      double.parse(
-                                                          strTaxAmount!);
+                                                      AppUtils.getDiscountPrice(double.parse(
+                                                          strTaxAmount!), vendorDiscountModel);
                                                 } else {
+                                                  print("TAG ds: ");
                                                   totalPrice +=
                                                       addGlobalTax;
                                                 }

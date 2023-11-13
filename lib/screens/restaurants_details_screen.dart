@@ -58,6 +58,7 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
       strRestaurantsType = '',
       strRestaurantsReview = '',
       strRestaurantImage = '';
+  VendorDiscount? vendorDiscount;
   List<RestaurantsDetailsMenuListData> _listRestaurantsMenu = [];
   List<RestaurantsDetailsMenuListData> _searchlistRestaurantsMenu = [];
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -114,7 +115,7 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                     child: Text(
                       '${Languages.of(context)!.labelTotalItem} $totalQty' +
                           " : " +
-                          AppUtils.formatMoney(totalCartAmount.round())+"${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}",
+                          AppUtils.formatMoney(AppUtils.getDiscountPrice(totalCartAmount, vendorDiscount).round())+"${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}",
                       style: TextStyle(
                         color: Constants.colorWhite,
                         fontFamily: Constants.appFont,
@@ -390,9 +391,10 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                                       scrollDirection: Axis.vertical,
                                       itemCount: _searchlistRestaurantsMenu.length,
                                       itemBuilder: (context, i) {
-                                        return ExpandedListItem(
-                                          restaurantsId: widget.restaurantId,
-                                          index: i,
+                                    return ExpandedListItem(
+                                      vendorDiscount: vendorDiscount,
+                                      restaurantsId: widget.restaurantId,
+                                      index: i,
                                           listRestaurantsMenu: _searchlistRestaurantsMenu,
                                           restaurantsName: strRestaurantsName,
                                           onSetState: callSetState,
@@ -417,6 +419,7 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
                                       itemCount: _listRestaurantsMenu.length,
                                       itemBuilder: (context, i) {
                                         return ExpandedListItem(
+                                          vendorDiscount: vendorDiscount,
                                           restaurantsId: widget.restaurantId,
                                           index: i,
                                           listRestaurantsMenu: _listRestaurantsMenu,
@@ -484,6 +487,7 @@ class _RestaurantsDetailsScreenState extends State<RestaurantsDetailsScreen> {
       if (response.success!) {
         setState(() {
           _isSyncing = false;
+          vendorDiscount =  response.data?.vendorDiscount;
           strRestaurantsType = response.data!.vendor!.vendorType;
           strRestaurantsName = response.data!.vendor!.name;
           strRestaurantsForTwoPerson = response.data!.vendor!.forTwoPerson;
@@ -624,6 +628,7 @@ class ExpandedListItem extends StatefulWidget {
   final int? restaurantsId;
   final String? restaurantsName;
   final String? restaurantsImage;
+  final VendorDiscount? vendorDiscount;
 
   List<Product> _products = [];
 
@@ -631,6 +636,7 @@ class ExpandedListItem extends StatefulWidget {
 
   ExpandedListItem(
       {Key? key,
+      this.vendorDiscount,
       this.index,
       this.listRestaurantsMenu,
       this.restaurantsId,
@@ -791,19 +797,42 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                           fontSize: ScreenUtil().setSp(12)),
                                     ),
                                   ),
-                                ),
+                                ),//ToDo
                                 Padding(
                                   padding: EdgeInsets.only(
                                       left: ScreenUtil().setWidth(10),
                                       top: ScreenUtil().setHeight(10)),
-                                  child: Text(
-                                    "${item.price != null && item.price != '' ? AppUtils.formatMoney((item.price ?? 0).round()) : "0"}" +
-                                        SharedPreferenceUtil.getString(
-                                            Constants.appSettingCurrencySymbol),
-                                    style: TextStyle(
-                                        fontFamily: Constants.appFont,
-                                        color: Constants.colorBlack,
-                                        fontSize: ScreenUtil().setSp(16)),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      if (AppUtils.getDiscountPrice(
+                                              double.parse((item.price ?? '0')
+                                                  .toString()),
+                                              widget.vendorDiscount) !=
+                                          item.price)
+                                        Text(
+                                          "${item.price != null && item.price != '' ? AppUtils.formatMoney((item.price ?? 0).round()) : "0"}" +
+                                              SharedPreferenceUtil.getString(
+                                                  Constants
+                                                      .appSettingCurrencySymbol),
+                                          style: TextStyle(
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                              fontFamily: Constants.appFont,
+                                              color: Constants.colorGray,
+                                              fontSize: ScreenUtil().setSp(13)),
+                                        ),
+                                      Text(
+                                        "${item.price != null && item.price != '' ? AppUtils.formatMoney(AppUtils.getDiscountPrice(double.parse((item.price ?? '0').toString()), widget.vendorDiscount).round()) : "0"}" +
+                                            SharedPreferenceUtil.getString(
+                                                Constants
+                                                    .appSettingCurrencySymbol),
+                                        style: TextStyle(
+                                            fontFamily: Constants.appFont,
+                                            color: Constants.colorBlack,
+                                            fontSize: ScreenUtil().setSp(16)),
+                                      )
+                                    ],
                                   ),
                                 ),
                                 item.custimization!.length > 0
@@ -1037,7 +1066,7 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                             double.parse(item.price.toString()),
                                             totalCartAmount,
                                             totalQty,
-                                            item.custimization!);
+                                            item.custimization!,widget.vendorDiscount);
                                       } else {
                                         if (ScopedModel.of<CartModel>(context,
                                                     rebuildOnChange: true)
@@ -1495,8 +1524,8 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
     double currentFoodItemPrice,
     double totalCartAmount,
     int totalQty,
-    List<Custimization> custimization,
-  ) {
+      List<Custimization> custimization,
+      VendorDiscount? vendorDiscount) {
     double tempPrice = 0;
 
     List<String> _listForAPI = [];
@@ -1543,7 +1572,6 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
       }
 
     }
-
     showModalBottomSheet(
         context: context,
         isDismissible: true,
@@ -1720,7 +1748,7 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                   child: Text(
                                     '${Languages.of(context)!.labelItem} ${totalQty + 1}' +
                                         '  |  '
-                                            '${AppUtils.formatMoney((currentFoodItemPrice + tempPrice).round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}',
+                                            '${AppUtils.formatMoney((AppUtils.getDiscountPrice(currentFoodItemPrice + tempPrice, vendorDiscount)).round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}',
                                     style: TextStyle(
                                         fontFamily: Constants.appFont,
                                         color: Constants.colorWhite,

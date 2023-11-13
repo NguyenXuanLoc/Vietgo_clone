@@ -26,6 +26,8 @@ class Constants {
   static String appFontBold = 'ProximaBold';
 
   static String isDisclaimer = 'isDisclaimer';
+  static String percentage = 'percentage';
+  static String percent = 'percent';
 
   static String registrationOTP = 'regOTP';
   static String registrationEmail = 'regEmail';
