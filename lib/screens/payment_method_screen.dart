@@ -27,6 +27,7 @@ import 'package:scoped_model/scoped_model.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   final bool isPromocodeApplied;
+  final String request;
   final int? venderId,addressId, vendorDiscountId;
   final double? orderAmount;
   final num? vendorDiscountAmount;
@@ -44,6 +45,7 @@ class PaymentMethodScreen extends StatefulWidget {
 
   const PaymentMethodScreen(
       {Key? key,
+      this.request = '',
       this.venderId,
       this.orderDeliveryType,
       this.orderDate,
@@ -494,7 +496,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
         'promocode_price': widget.orderPromoPrice,
         'payment_token': strPaymentToken,
         'tax': json.encode(widget.allTax).toString(),
-      };
+          'order_notes': widget.request
+        };
       }else{
         body = {
           'vendor_id': widget.venderId.toString(),
@@ -517,6 +520,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               ? widget.vendorDiscountId.toString()
               : '',
           'tax': json.encode(widget.allTax).toString(),
+          'order_notes':widget.request
         };
       }
       response  = await RestClient(RetroApi().dioData()).bookOrder(body);
