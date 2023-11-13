@@ -38,7 +38,7 @@ class LanguageVn extends Languages {
   @override
   String get labelScreenIntro1Line2=>'Giúp việc tìm đồ ăn trở nên đơn giản, bạn chỉ cần nhập địa chỉ và làm phần còn lại.';
   @override
-  String get labelSkip=>'NHẢY';
+  String get labelSkip=>'Bỏ qua';
   @override
   String get labelScreenIntro2Line1=>'Nhà hàng giao hàng tận nhà ngay lập tức';
   @override
@@ -130,7 +130,7 @@ class LanguageVn extends Languages {
   @override
   String get labelExploreRest=>'Khám phá nhà hàng';
   @override
-  String get labelExploreTheBestCuisines=>'Khám phá những món ăn ngon nhất';
+  String get labelExploreTheBestCuisines=>'Bạn muốn ăn gì hôm nay?';
   @override
   String get labelNonPureVegRest=>'Nhà hàng không ăn chay';
   @override
@@ -192,7 +192,7 @@ class LanguageVn extends Languages {
   @override
   String get labelRecentlySearches=>'Tìm kiếm gần đây';
   @override
-  String get labelClear=>'Thông thoáng';
+  String get labelClear=>'Xoá bộ lọc';
   @override
   String get labelSearchByFood=>'Tìm kiếm theo món ăn';
   @override
