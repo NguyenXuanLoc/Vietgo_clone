@@ -122,6 +122,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
   num vendorDiscountAmount = 0;
 
   int itemLength = 0;
+  var requestController = TextEditingController();
 
   @override
   void initState() {
@@ -2276,8 +2277,9 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                   right: ScreenUtil().setWidth(15)),
                               child: TextField(
                                 autofocus: false,
-                                decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.only(
+                                      controller: requestController,
+                                      decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.only(
                                       left: ScreenUtil().setWidth(10)),
                                   hintText: Languages.of(context)!
                                       .labelAddRequestToRest,
@@ -4142,6 +4144,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
           curve: Curves.bounceInOut,
           reverseCurve: Curves.fastLinearToSlowEaseIn,
           widget: PaymentMethodScreen(
+            request: requestController.text,
             addressId: selectedAddressId,
             orderAmount: totalPrice,
             orderCustomization: customization,
