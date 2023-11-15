@@ -28,6 +28,7 @@ import 'package:scoped_model/scoped_model.dart';
 class PaymentMethodScreen extends StatefulWidget {
   final bool isPromocodeApplied;
   final String request;
+  final int distancekm;
   final int? venderId,addressId, vendorDiscountId;
   final double? orderAmount;
   final num? vendorDiscountAmount;
@@ -61,7 +62,9 @@ class PaymentMethodScreen extends StatefulWidget {
       this.vendorDiscountAmount,
       this.vendorDiscountId,
       this.strTaxAmount,
-      this.allTax, required this.isPromocodeApplied})
+      this.allTax,
+        required this.isPromocodeApplied,
+        this.distancekm = 0})
       : super(key: key);
 
   @override
@@ -496,7 +499,9 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
         'promocode_price': widget.orderPromoPrice,
         'payment_token': strPaymentToken,
         'tax': json.encode(widget.allTax).toString(),
-          'order_notes': widget.request
+          'order_notes': widget.request,
+          'order_distance':widget.distancekm.toString()
+
         };
       }else{
         body = {
@@ -520,7 +525,8 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               ? widget.vendorDiscountId.toString()
               : '',
           'tax': json.encode(widget.allTax).toString(),
-          'order_notes':widget.request
+          'order_notes':widget.request,
+          'order_distance':widget.distancekm.toString()
         };
       }
       response  = await RestClient(RetroApi().dioData()).bookOrder(body);

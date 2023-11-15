@@ -6,6 +6,7 @@ class RetroApi {
 
   Dio dioData()
   {
+    //print("header token ${PreferenceUtils.getString(Constants.headerToken)}");
     final dio = Dio();
     dio.options.headers["Accept"] = "application/json"; // config your dio headers globally
     dio.options.headers["Authorization"] = "Bearer" + " " + PreferenceUtils.getString(Constants.headerToken); // config your dio headers globally

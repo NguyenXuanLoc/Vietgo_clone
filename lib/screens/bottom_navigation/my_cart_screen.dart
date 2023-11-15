@@ -122,6 +122,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
   num vendorDiscountAmount = 0;
 
   int itemLength = 0;
+  int distanceKm = 0;
   var requestController = TextEditingController();
 
   @override
@@ -4163,6 +4164,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
             strTaxAmount: strTaxAmount,
             allTax: sendAllTax,
             isPromocodeApplied: isPromocodeApplied,
+            distancekm:distanceKm
           ),
         ),
       );
@@ -4323,7 +4325,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
     dynamic response;
     try {
       response = await RestClient(RetroApi().dioData()).orderSetting();
-      print(response.success);
+     // print("calculateDeliveryCharge ${response.toJson()}");
       if (response.success!) {
         strOrderSettingDeliveryChargeType = response.data!.deliveryChargeType;
 
@@ -4342,7 +4344,6 @@ class _MyCartScreenState extends State<MyCartScreen> {
               });
             }
           }
-
           setState(() {
             if (decTaxInKm == true) {
               subTotal = subtotal;
@@ -4375,18 +4376,18 @@ class _MyCartScreenState extends State<MyCartScreen> {
         } else if (strOrderSettingDeliveryChargeType == 'delivery_distance') {
           double userLat = 0.0;
           double userLong = 0.0;
-          if (SharedPreferenceUtil.getString('selectedLat1') != '') {
+          if (SharedPreferenceUtil.getString('selectedLat') != '') {
             userLat =
-                double.parse(SharedPreferenceUtil.getString('selectedLat1'));
+                double.parse(SharedPreferenceUtil.getString('selectedLat'));
             userLong =
-                double.parse(SharedPreferenceUtil.getString('selectedLng1'));
+                double.parse(SharedPreferenceUtil.getString('selectedLng'));
           }
-
+          print("calculateDeliveryCharge user lat ${userLat} lng ${userLong}");
           double vendorLat =
           vandorLat.isNotEmpty ? double.parse(vandorLat) : 0.0;
           double vendorLong =
           vandorLong.isNotEmpty ? double.parse(vandorLong) : 0.0;
-
+          print("calculateDeliveryCharge vendor lat ${vendorLat} lng ${vendorLong}");
           var p = 0.017453292519943295;
           var c = cos;
           var a = 0.5 -
@@ -4396,7 +4397,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                   (1 - c((vendorLong - userLong) * p)) /
                   2;
           var distanceKm1 = 12742 * asin(sqrt(a));
-          var distanceKm = distanceKm1.round();
+          distanceKm = distanceKm1.round();
 
           strDeliveryCharges = response.data!.charges;
           List<DeliveryChargesModel> listDeliveryCharge = [];
@@ -4422,7 +4423,6 @@ class _MyCartScreenState extends State<MyCartScreen> {
           } else {
             strFinalDeliveryCharge = strFinalDeliveryCharge1;
           }
-
           setState(() {
             if (decTaxInKm == true) {
               subTotal = subtotal;
