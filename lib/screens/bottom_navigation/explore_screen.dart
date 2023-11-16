@@ -332,7 +332,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                   ),
                                 ),
                               ),
-                              Text(
+/*                              Text(
                                 Languages.of(context)!.labelQuickFilters,
                                 style: TextStyle(
                                     fontFamily: Constants.appFont,
@@ -386,7 +386,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                     }),
                                   ),
                                 ),
-                              ),
+                              ),*/
                               Text(
                                 Languages.of(context)!.labelCousines,
                                 style: TextStyle(
