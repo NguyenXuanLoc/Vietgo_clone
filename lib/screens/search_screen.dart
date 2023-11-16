@@ -518,44 +518,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                       ),
                                                                     ),
                                                                     Container(
-                                                                      child:
-                                                                          Padding(
-                                                                        padding: const EdgeInsets
-                                                                            .only(
-                                                                            right:
-                                                                                0),
-                                                                        child: vendorList[index].vendorType ==
-                                                                                'veg'
-                                                                            ? Row(
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsets.only(right: 2),
-                                                                                    child: SvgPicture.asset(
-                                                                                      'images/ic_veg.svg',
-                                                                                      height: ScreenUtil().setHeight(10.0),
-                                                                                      width: ScreenUtil().setHeight(10.0),
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              )
-                                                                            : Row(
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsets.only(right: 2),
-                                                                                    child: SvgPicture.asset(
-                                                                                      'images/ic_veg.svg',
-                                                                                      height: ScreenUtil().setHeight(10.0),
-                                                                                      width: ScreenUtil().setHeight(10.0),
-                                                                                    ),
-                                                                                  ),
-                                                                                  SvgPicture.asset(
-                                                                                    'images/ic_non_veg.svg',
-                                                                                    height: ScreenUtil().setHeight(10.0),
-                                                                                    width: ScreenUtil().setHeight(10.0),
-                                                                                  )
-                                                                                ],
-                                                                              ),
-                                                                      ),
+                                                                      child: Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(right: 0)),
                                                                     )
                                                                   ],
                                                                 ),

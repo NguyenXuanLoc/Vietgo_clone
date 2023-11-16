@@ -240,70 +240,9 @@ class _SingleCuisineDetailsScreenState extends State<SingleCuisineDetailsScreen>
                                                       ),
                                                     ),
                                                     Container(
-                                                      margin: EdgeInsets.only(
-                                                          right: ScreenUtil().setWidth(10)),
-                                                      child: (() {
-                                                        if (_listCuisineVendorRestaurants[index]
-                                                                .vendorType ==
-                                                            'veg') {
-                                                          return Row(
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets.only(right: 2),
-                                                                child: SvgPicture.asset(
-                                                                  'images/ic_veg.svg',
-                                                                  height:
-                                                                      ScreenUtil().setHeight(10.0),
-                                                                  width: ScreenUtil().setHeight(10.0),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        } else if (_listCuisineVendorRestaurants[
-                                                                    index]
-                                                                .vendorType ==
-                                                            'non_veg') {
-                                                          return Row(
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets.only(right: 2),
-                                                                child: SvgPicture.asset(
-                                                                  'images/ic_non_veg.svg',
-                                                                  height:
-                                                                      ScreenUtil().setHeight(10.0),
-                                                                  width: ScreenUtil().setHeight(10.0),
-                                                                ),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        } else if (_listCuisineVendorRestaurants[
-                                                                    index]
-                                                                .vendorType ==
-                                                            'all') {
-                                                          return Row(
-                                                            children: [
-                                                              Padding(
-                                                                padding: EdgeInsets.only(
-                                                                    right: ScreenUtil().setWidth(5)),
-                                                                child: SvgPicture.asset(
-                                                                  'images/ic_veg.svg',
-                                                                  height:
-                                                                      ScreenUtil().setHeight(10.0),
-                                                                  width: ScreenUtil().setHeight(10.0),
-                                                                ),
-                                                              ),
-                                                              SvgPicture.asset(
-                                                                'images/ic_non_veg.svg',
-                                                                height: ScreenUtil().setHeight(10.0),
-                                                                width: ScreenUtil().setHeight(10.0),
-                                                              )
-                                                            ],
-                                                          );
-                                                        }
-                                                      }()),
-                                                    )
+                                                        margin: EdgeInsets.only(
+                                                            right: ScreenUtil()
+                                                                .setWidth(10))),
                                                   ],
                                                 )
                                               ],

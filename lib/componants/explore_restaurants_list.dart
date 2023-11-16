@@ -156,30 +156,7 @@ class ExploreRestaurantsList extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(right: ScreenUtil().setWidth(15)),
-                            child: Expanded(
-                              flex: 1,
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(right: ScreenUtil().setWidth(2)),
-                                    child: SvgPicture.asset(
-                                      'images/ic_veg.svg',
-                                      height: ScreenUtil().setHeight(10),
-                                      width: ScreenUtil().setWidth(10),
-                                    ),
-                                  ),
-                                  Visibility(
-                                    visible: true,
-                                    child: SvgPicture.asset(
-                                      'images/ic_non_veg.svg',
-                                      height: ScreenUtil().setHeight(10),
-                                      width: ScreenUtil().setWidth(10),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                            padding: EdgeInsets.only(right: ScreenUtil().setWidth(15))
                           )
                         ],
                       ),

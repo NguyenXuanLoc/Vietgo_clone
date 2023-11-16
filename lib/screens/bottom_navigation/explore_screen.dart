@@ -868,64 +868,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
                                                                               5),
                                                                       bottom:
                                                                           ScreenUtil().setWidth(5)),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: const EdgeInsets
-                                                                            .only(
-                                                                        right:
-                                                                            10),
-                                                                    child:
-                                                                        (() {
-                                                                      if (_exploreResListData[index].vendorType ==
-                                                                          'veg') {
-                                                                        return Row(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 2),
-                                                                              child: SvgPicture.asset(
-                                                                                'images/ic_veg.svg',
-                                                                                height: ScreenUtil().setHeight(10.0),
-                                                                                width: ScreenUtil().setHeight(10.0),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        );
-                                                                      } else if (_exploreResListData[index].vendorType ==
-                                                                          'non_veg') {
-                                                                        return Row(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 2),
-                                                                              child: SvgPicture.asset(
-                                                                                'images/ic_non_veg.svg',
-                                                                                height: ScreenUtil().setHeight(10.0),
-                                                                                width: ScreenUtil().setHeight(10.0),
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        );
-                                                                      } else if (_exploreResListData[index].vendorType ==
-                                                                          'all') {
-                                                                        return Row(
-                                                                          children: [
-                                                                            Padding(
-                                                                              padding: const EdgeInsets.only(right: 2),
-                                                                              child: SvgPicture.asset(
-                                                                                'images/ic_veg.svg',
-                                                                                height: ScreenUtil().setHeight(10.0),
-                                                                                width: ScreenUtil().setHeight(10.0),
-                                                                              ),
-                                                                            ),
-                                                                            SvgPicture.asset(
-                                                                              'images/ic_non_veg.svg',
-                                                                              height: ScreenUtil().setHeight(10.0),
-                                                                              width: ScreenUtil().setHeight(10.0),
-                                                                            )
-                                                                          ],
-                                                                        );
-                                                                      }
-                                                                    }()),
-                                                                  ),
+                                                                  child: Padding(
+                                                                      padding: const EdgeInsets
+                                                                              .only(
+                                                                          right:
+                                                                              10)),
                                                                 )
                                                               ],
                                                             )

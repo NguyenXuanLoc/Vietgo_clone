@@ -172,27 +172,9 @@ class HorizontalGridview extends StatelessWidget {
                                               ],
                                             ),
                                           ),
-                                          Container(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(right: 10),
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(right: 2),
-                                                    child: SvgPicture.asset(
-                                                      'images/ic_veg.svg',
-                                                      height: ScreenUtil().setHeight(10.0),
-                                                      width: ScreenUtil().setHeight(10.0),
-                                                    ),
-                                                  ),
-                                                  SvgPicture.asset(
-                                                    'images/ic_non_veg.svg',
-                                                    height: ScreenUtil().setHeight(10.0),
-                                                    width: ScreenUtil().setHeight(10.0),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 10),
                                           )
                                         ],
                                       )

@@ -760,20 +760,9 @@ class _ExpandedListItemState extends State<ExpandedListItem> {
                                   ),
                                   child: Row(
                                     children: [
-                                      item.type == 'veg'
-                                          ? SvgPicture.asset(
-                                              'images/ic_veg.svg',
-                                              width: ScreenUtil().setWidth(15),
-                                              height: ScreenUtil().setHeight(15),
-                                            )
-                                          : SvgPicture.asset(
-                                              'images/ic_non_veg.svg',
-                                              width: ScreenUtil().setWidth(15),
-                                              height: ScreenUtil().setHeight(15),
-                                            ),
                                       Padding(
                                         padding: EdgeInsets.only(
-                                          left: ScreenUtil().setWidth(6),
+                                          left: ScreenUtil().setWidth(0),
                                         ),
                                         child: Container(
                                           width: MediaQuery.of(context).size.width / 2.5,

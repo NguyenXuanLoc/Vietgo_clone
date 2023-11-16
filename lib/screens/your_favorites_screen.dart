@@ -339,51 +339,7 @@ class _YourFavoritesScreenState extends State<YourFavoritesScreen> {
                                                                           ),
                                                                         ),
                                                                         Container(
-                                                                          child:
-                                                                              Padding(
-                                                                            padding: const EdgeInsets.only(right: 10),
-                                                                            child: _listFavoriteData[index].vendorType == 'veg'
-                                                                                ? Row(
-                                                                                    children: [
-                                                                                      Padding(
-                                                                                        padding: const EdgeInsets.only(right: 2),
-                                                                                        child: SvgPicture.asset(
-                                                                                          'images/ic_veg.svg',
-                                                                                          height: ScreenUtil().setHeight(10.0),
-                                                                                          width: ScreenUtil().setHeight(10.0),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ],
-                                                                                  )
-                                                                                : _listFavoriteData[index].vendorType == 'non_veg' ? Row(
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: const EdgeInsets.only(right: 2),
-                                                                                  child: SvgPicture.asset(
-                                                                                    'images/ic_non_veg.svg',
-                                                                                    height: ScreenUtil().setHeight(10.0),
-                                                                                    width: ScreenUtil().setHeight(10.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ): Row(
-                                                                                    children: [
-                                                                                      Padding(
-                                                                                        padding: const EdgeInsets.only(right: 2),
-                                                                                        child: SvgPicture.asset(
-                                                                                          'images/ic_veg.svg',
-                                                                                          height: ScreenUtil().setHeight(10.0),
-                                                                                          width: ScreenUtil().setHeight(10.0),
-                                                                                        ),
-                                                                                      ),
-                                                                                      SvgPicture.asset(
-                                                                                        'images/ic_non_veg.svg',
-                                                                                        height: ScreenUtil().setHeight(10.0),
-                                                                                        width: ScreenUtil().setHeight(10.0),
-                                                                                      )
-                                                                                    ],
-                                                                                  ),
-                                                                          ),
+                                                                          padding: const EdgeInsets.only(right: 10),
                                                                         )
                                                                       ],
                                                                     )
