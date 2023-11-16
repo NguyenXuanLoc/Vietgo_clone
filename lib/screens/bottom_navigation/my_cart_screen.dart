@@ -1481,7 +1481,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                         cartMenuItem[
                                                         position]
                                                             .name!,
-                                                        maxLines: 2,
+                                                        maxLines: 1,
                                                         overflow:
                                                         TextOverflow
                                                             .ellipsis,
@@ -1508,7 +1508,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                                         cartMenuItem[position]
                                                                             .price)
                                                                       Text(
-                                                                        "${cartMenuItem[position].price != null && cartMenuItem[position].price != '' ? AppUtils.formatMoney((cartMenuItem[position].price ?? 0).round()) : "0"}" +
+                                                                        "${cartMenuItem[position].price != null && cartMenuItem[position].price != '' ? AppUtils.formatMoney((getCurrentPrice(cartMenuItem[position])).round()) : "0"}" +
                                                                             SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol),
                                                                         style: TextStyle(
                                                                             decoration:
@@ -1629,7 +1629,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                                             position]
                                                                 .custimization!,
                                                             finalFoodCustomization!,
-                                                            position,
+                                                            position,vendorDiscountModel
                                                           );
                                                         },
                                                         child:
@@ -2977,19 +2977,19 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                           child: Text(
                                                 () { //Todo
                                               if (isSetStateAvailable ==
-                                                  true) {
-                                                if (addGlobalTax == 0.0 &&
-                                                    strTaxAmount != '') {
-                                                  totalPrice +=
-                                                      AppUtils.getDiscountPrice(double.parse(
-                                                          strTaxAmount!), vendorDiscountModel);
-                                                } else {
-                                                  print("TAG ds: ");
-                                                  totalPrice +=
-                                                      addGlobalTax;
-                                                }
-                                              }
-                                              return "${AppUtils.formatMoney(totalPrice.round())}${SharedPreferenceUtil
+                                                        true) {
+                                                      if (addGlobalTax == 0.0 &&
+                                                          strTaxAmount != '') {
+                                                        totalPrice +=
+                                                            double.parse(
+                                                                strTaxAmount!);
+                                                      } else {
+                                                        totalPrice +=
+                                                            addGlobalTax;
+                                                      }
+                                                    }
+                                                    // totalPrice = totalPrice-discountAmount
+                                              return "${AppUtils.formatMoney((totalPrice -vendorDiscountAmount).round())}${SharedPreferenceUtil
                                                   .getString(Constants
                                                   .appSettingCurrencySymbol)}";
                                             }(),
@@ -3590,9 +3590,19 @@ class _MyCartScreenState extends State<MyCartScreen> {
       double totalCartAmount,
       List<Custimization> custimization,
       String previousFoodCustomization,
-      int position,) {
-    print(currentFoodItemPrice);
-    print(item.price);
+      int position,VendorDiscount? vendorDiscountModel) {
+    for (int i = 0; i < _listRestaurantsMenu.length; i++) {
+      var subMenu = _listRestaurantsMenu[i].submenu;
+      if (subMenu != null)
+        for (int j = 0; j < subMenu.length; j++) {
+          if (subMenu[j].id == item.id) {
+            currentFoodItemPrice = subMenu[j].price!.toDouble();
+            break;
+          }
+        }
+    }
+    // currentFoodItemPrice =item.price!.toDouble();
+    print("currentFoodItemPrice: $currentFoodItemPrice");
 
     double tempPrice = 0;
 
@@ -3613,8 +3623,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
       previousItemName.add(_listPreviousCustomization[i].datamodel!.name);
     }
 
-    double singleFinal = currentFoodItemPrice - previousPrice;
-
+    double singleFinal = currentFoodItemPrice;
     List<CustomizationItemModel> _listCustomizationItem = [];
     List<int> _radioButtonFlagList = [];
     List<CustomModel> _listFinalCustomization = [];
@@ -3686,9 +3695,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
                                 color: Constants.colorBlack,
                                 child: Center(
                                   child: Text(
-                                    '${AppUtils.formatMoney((singleFinal +
-                                        tempPrice).round())}${SharedPreferenceUtil.getString(Constants
-                                        .appSettingCurrencySymbol)}',
+                                    '${AppUtils.formatMoney((AppUtils.getDiscountPrice(singleFinal + tempPrice, vendorDiscountModel)).round())}${SharedPreferenceUtil.getString(Constants.appSettingCurrencySymbol)}',
                                     style: TextStyle(
                                         fontFamily: Constants.appFont,
                                         color: Colors.white,
@@ -4059,7 +4066,7 @@ class _MyCartScreenState extends State<MyCartScreen> {
       }
 
       print(tempTotalWithoutDeliveryCharge);
-
+      print("TAG totalPrice: ${totalPrice}________${vendorDiscountAmount} =${totalPrice-vendorDiscountAmount}");
       Navigator.of(context).push(
         Transitions(
           transitionType: TransitionType.fade,
@@ -4467,6 +4474,19 @@ class _MyCartScreenState extends State<MyCartScreen> {
     }
     return BaseModel()
       ..data = response;
+  }
+
+  double getCurrentPrice(SubMenuListData model) {
+    for (int i = 0; i < _listRestaurantsMenu.length; i++) {
+      var subMenu = _listRestaurantsMenu[i].submenu;
+      if (subMenu != null)
+        for (int j = 0; j < subMenu.length; j++) {
+          if (subMenu[j].id == model.id) {
+            return subMenu[j].price!.toDouble();
+          }
+        }
+    }
+    return model.price!.toDouble();
   }
 
   void calculateDiscount(String? promoName, String? discountType,
